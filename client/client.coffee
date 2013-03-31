@@ -21,32 +21,10 @@ Template.alerts.saved = ->
 	Session.get('saved')
 
 Template.list.wines = ->
-	if Session.get('sort_field') == 'ref'
-		Wines.find({}, sort: { ref: Session.get('sort_by') })
-	else if Session.get('sort_field') == 'qty'
-		Wines.find({}, sort: { qty: Session.get('sort_by') })
-	else if Session.get('sort_field') == 'region'
-		Wines.find({}, sort: { region: Session.get('sort_by') })
-	else if Session.get('sort_field') == 'type'
-		Wines.find({}, sort: { type: Session.get('sort_by') })
-	else if Session.get('sort_field') == 'winery'
-		Wines.find({}, sort: { winery: Session.get('sort_by') })
-	else if Session.get('sort_field') == 'name'
-		Wines.find({}, sort: { name: Session.get('sort_by') })
-	else if Session.get('sort_field') == 'year'
-		Wines.find({}, sort: { year: Session.get('sort_by') })
-	else if Session.get('sort_field') == 'description'
-		Wines.find({}, sort: { description: Session.get('sort_by') })
-	else if Session.get('sort_field') == 'drink_by'
-		Wines.find({}, sort: { drink_by: Session.get('sort_by') })
-	else if Session.get('sort_field') == 'purchased'
-		Wines.find({}, sort: { purchased: Session.get('sort_by') })
-	else if Session.get('sort_field') == 'rating'
-		Wines.find({}, sort: { rating: Session.get('sort_by') })
-	else if Session.get('sort_field') == 'notes'
-		Wines.find({}, sort: { notes: Session.get('sort_by') })
-	else
-		Wines.find()
+	sort = {}
+	sort[Session.get('sort_field')] = Session.get('sort_by') 
+
+	Wines.find({}, sort: sort )
 
 Template.list.events {
 	'click .edit': ->
