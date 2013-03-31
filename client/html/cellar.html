@@ -166,18 +166,17 @@
 		<thead>
 			<tr>
 				<th><a id="ref">#</a></th>
+				<th><a id="name">Name</a></th>
 				<th><a id="qty">Qty</a></th>
 				<th><a id="region">Region</a></th>
 				<th><a id="type">Type</a></th>
-				<th><a id="winery">Winery</a></th>
-				<th><a id="name">Name</a></th>
+				<th><a id="winery">Winery</a></th>				
 				<th><a id="year">Year</a></th>
 				<th><a id="description">Description</a></th>
 				<th><a id="drink_by">Drink By</a></th>
 				<th><a id="purchased">Purchased</a></th>
 				<th><a id="price">Price</a></th>
 				<th><a id="rating">Rating</a></th>
-				<th><a id="notes">Notes</a></th>
 				<th></th>
 			</tr>
 		</thead>
@@ -185,18 +184,17 @@
 			{{#each wines}}
 				<tr>
 					<td>{{ref}}</td>
+					<td>{{name}}</td>
 					<td>{{qty}}</td>
 					<td>{{region}}</td>
 					<td>{{type}}</td>
-					<td>{{winery}}</td>
-					<td>{{name}}</td>
+					<td>{{winery}}</td>					
 					<td>{{year}}</td>
 					<td>{{description}}</td>
 					<td>{{drink_by}}</td>
 					<td>{{purchased}}</td>
 					<td>{{price}}</td>
-					<td>{{rating}}</td>
-					<td>{{notes}}</td>
+					<td>{{rating}}</td>					
 					<td class="edit"><a><i class="icon-edit"></i></a></td>
 					<td class="remove"><a><i class="icon-trash"></i></a></td>
 				</tr>

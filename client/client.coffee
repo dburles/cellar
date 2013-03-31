@@ -24,7 +24,7 @@ Template.list.wines = ->
 	sort = {}
 	sort[Session.get('sort_field')] = Session.get('sort_by') 
 
-	Wines.find({}, sort: sort )
+	Wines.find({}, sort: sort)
 
 Template.list.events {
 	'click .edit': ->
