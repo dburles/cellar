@@ -1,0 +1,38 @@
+body {
+	margin: 20px;
+}
+#form {
+	height: 100%;
+	overflow: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding-top: 10px;
+	background: #FFF;
+}
+#form fieldset {
+	padding: 20px;
+}
+#form .control-group {
+	margin-bottom: 5px;
+}
+#form textarea {
+	width: 95%;
+	height: 100px;
+}
+.visible {
+	display: block;
+}
+.invisible {
+	display: none;
+}
+
+a {
+	cursor: pointer;
+}
+
+.shadow {
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}

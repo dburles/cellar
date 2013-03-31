@@ -1,0 +1,206 @@
+<head>
+	<title>Wine Cellar</title>
+</head>
+
+<body>
+	{{> nav}}
+	{{> alerts}}
+	{{> form}}
+	{{> list}}
+</body>
+
+<template name="nav">
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="#">Wine Cellar</a>
+				<div class="nav-collapse collapse">
+					<ul class="nav">
+						<li>
+							<a id="new" class="active"><i class="icon-glass"></i> Add a new wine</a>
+						</li>
+						<li>
+							<a id="auth">{{loginButtons align="right"}}</a>
+						</li>
+					</ul>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="alerts">
+	{{#if saved}}
+	<div class="alert alert-success">
+		<strong>Saved!</strong> your information has been saved.
+	</div>
+	{{/if}}
+</template>
+
+<template name="form">
+	<form id="form" class="shadow form-horizontal {{visibility}}">
+		<fieldset>
+			<div class="control-group">
+				<!-- Text input-->
+				<label class="control-label" for="qty">Quantity</label>
+				<div class="controls">
+					<input type="text" name="qty" placeholder="" class="input-xlarge">
+					<p class="help-block"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<!-- Text input-->
+				<label class="control-label" for="region">Region</label>
+				<div class="controls">
+					<input type="text" name="region" placeholder="" class="input-xlarge">
+					<p class="help-block"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<!-- Text input-->
+				<label class="control-label" for="type">Type</label>
+				<div class="controls">
+					<input type="text" name="type" placeholder="" class="input-xlarge">
+					<p class="help-block"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<!-- Text input-->
+				<label class="control-label" for="winery">Winery</label>
+				<div class="controls">
+					<input type="text" name="winery" placeholder="" class="input-xlarge">
+					<p class="help-block"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<!-- Text input-->
+				<label class="control-label" for="name">Name</label>
+				<div class="controls">
+					<input type="text" name="name" placeholder="" class="input-xlarge">
+					<p class="help-block"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<!-- Text input-->
+				<label class="control-label" for="year">Year</label>
+				<div class="controls">
+					<input type="text" name="year" placeholder="" class="input-xlarge">
+					<p class="help-block"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<!-- Text input-->
+				<label class="control-label" for="description">Description</label>
+				<div class="controls">
+					<input type="text" name="description" placeholder="" class="input-xlarge">
+					<p class="help-block"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<!-- Text input-->
+				<label class="control-label" for="drink_by">Drink By</label>
+				<div class="controls">
+					<input type="text" name="drink_by" placeholder="" class="input-xlarge">
+					<p class="help-block"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<!-- Text input-->
+				<label class="control-label" for="purchased">Purchased</label>
+				<div class="controls">
+					<input type="text" name="purchased" placeholder="" class="input-xlarge">
+					<p class="help-block"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<!-- Text input-->
+				<label class="control-label" for="price">Price</label>
+				<div class="controls">
+					<input type="text" name="price" placeholder="" class="input-xlarge">
+					<p class="help-block"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<!-- Select Basic -->
+				<label for="rating" class="control-label">Rating</label>
+				<div class="controls">
+					<select name="rating" class="input-xlarge">
+						<option>None</option>
+						<option value="10">10</option>
+						<option value="9">9</option>
+						<option value="8">8</option>
+						<option value="7">7</option>
+						<option value="6">6</option>
+						<option value="5">5</option>
+						<option value="4">4</option>
+						<option value="3">3</option>
+						<option value="2">2</option>
+						<option value="1">1</option>
+					</select>
+				</div>
+			</div>
+			<div class="control-group">
+				<!-- Textarea -->
+				<label for="noteS" class="control-label">Notes</label>
+				<div class="controls">
+					<div class="textarea">
+						<textarea name="notes" type="" class=""></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label"></label>
+				<div class="controls">
+					<input class="btn btn-primary" type="submit" value="Save">
+					<a id="cancel" class="btn right" style="float: right">Cancel</a>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</template>
+
+
+<template name="list">
+	<table class="table">
+		<thead>
+			<tr>
+				<th><a id="ref">#</a></th>
+				<th><a id="qty">Qty</a></th>
+				<th><a id="region">Region</a></th>
+				<th><a id="region">Type</a></th>
+				<th><a id="winery">Winery</a></th>
+				<th><a id="name">Name</a></th>
+				<th><a id="year">Year</a></th>
+				<th><a id="description">Description</a></th>
+				<th><a id="drink_by">Drink By</a></th>
+				<th><a id="purchased">Purchased</a></th>
+				<th><a id="price">Price</a></th>
+				<th><a id="rating">Rating</a></th>
+				<th><a id="notes">Notes</a></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>		
+			{{#each wines}}
+				<tr>
+					<td>{{ref}}</td>
+					<td>{{qty}}</td>
+					<td>{{region}}</td>
+					<td>{{type}}</td>
+					<td>{{winery}}</td>
+					<td>{{name}}</td>
+					<td>{{year}}</td>
+					<td>{{description}}</td>
+					<td>{{drink_by}}</td>
+					<td>{{purchased}}</td>
+					<td>{{price}}</td>
+					<td>{{rating}}</td>
+					<td>{{notes}}</td>
+					<td class="edit"><a><i class="icon-edit"></i></a></td>
+					<td class="remove"><a><i class="icon-trash"></i></a></td>
+				</tr>
+			{{/each}}
+		</tbody>
+	</table>
+</template>
