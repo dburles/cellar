@@ -15,7 +15,7 @@ Meteor.methods {
 		data.added = (new Date).getTime()
 		data.modified = (new Date).getTime()
 		data.owner = @userId
-		last = Wines.findOne({}, { sort: { ref: -1 }})
+		last = Wines.findOne({ owner: @userId }, { sort: { ref: -1 }})
 		if last
 			data.ref = parseInt(last.ref) + 1
 		else
