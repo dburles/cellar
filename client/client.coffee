@@ -40,7 +40,6 @@ Template.list.events {
 
 		Session.set('editing', @_id)
 		Session.set('form_visibility', 'visible')
-		$('#blur').fadeIn()
 
 	'click .remove': ->
 		if confirm("Are you sure?")
@@ -84,11 +83,9 @@ Template.form.events {
 
 		template.find('#form').reset()
 		Session.set('form_visibility', 'invisible')
-		$('#blur').fadeOut()
 
 	'click #cancel': (e, template) ->
 		Session.set('form_visibility', 'invisible')
 		Session.set('editing', false)
 		template.find('#form').reset()
-		$('#blur').fadeOut()
 }
