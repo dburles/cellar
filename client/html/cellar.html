@@ -1,6 +1,6 @@
 <head>
 	<title>Wine Cellar</title>
-	<meta name="viewport" content="user-scalable=no" />
+	<meta name="viewport" user="content-scalable=no" />
 </head>
 
 <body>
@@ -154,7 +154,7 @@
 
 
 <template name="list">
-	<table class="table">
+	<table class="table table-condensed table-striped table-hover">
 		<thead>
 			<tr>
 				<th><a id="ref">#</a></th>
@@ -174,7 +174,7 @@
 		</thead>
 		<tbody>		
 			{{#each wines}}
-				<tr>
+				<tr class="edit">
 					<td>{{ref}}</td>
 					<td>{{name}}</td>
 					<td>{{qty}}</td>
