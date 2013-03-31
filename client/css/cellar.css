@@ -1,5 +1,5 @@
 body {
-	margin: 20px;
+	margin: 10px;
 }
 #form {
 	height: 100%;
@@ -8,18 +8,43 @@ body {
 	top: 0;
 	left: 0;
 	padding-top: 10px;
-	background: #FFF;
+	background: url('/images/bg.jpg');
+	/*background-size: 100% 100%;*/
+}
+#form .control-label {
+	color: #fff;
+	text-shadow: 0px 0px 10px #000000;
+	filter: dropshadow(color=#000000, offx=0, offy=0);
+	font-weight: bold;
+}
+#blur {
+	width: 100%;
+	height: 100%;
+	background: #000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	filter: alpha(opacity=80);
+	opacity: 0.8;
+	display: none;
+}
+.table {
+	font-size: 12px;
 }
 #form fieldset {
-	padding: 20px;
+	padding: 0 10px 20px 0;
 }
 #form .control-group {
-	margin-bottom: 5px;
+	margin-bottom: 3px;
 }
 #form textarea {
 	width: 95%;
 	height: 100px;
 }
+#form select {
+	width: 100%;
+}
+
 .visible {
 	display: block;
 }
@@ -32,7 +57,7 @@ a {
 }
 
 .shadow {
-	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-	-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.9);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.9);
+	-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.9);
 }

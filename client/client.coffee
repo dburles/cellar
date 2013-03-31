@@ -1,5 +1,4 @@
 Session.setDefault('form_visibility', 'invisible')
-Session.setDefault('saved', false)
 Session.setDefault('editing', false)
 Session.setDefault('sort_field', 'ref')
 Session.setDefault('sort_by', -1)
@@ -10,15 +9,11 @@ Meteor.autorun ->
 Template.nav.events {
 	'click #new': ->
 		if Meteor.userId()
-			Session.set('saved', false)
 			Session.set('editing', false)
 			Session.set('form_visibility', 'visible')
 		else
 			alert("Please sign-in first!")
 }
-
-Template.alerts.saved = ->
-	Session.get('saved')
 
 Template.list.wines = ->
 	sort = {}
@@ -45,7 +40,7 @@ Template.list.events {
 
 		Session.set('editing', @_id)
 		Session.set('form_visibility', 'visible')
-		Session.set('saved', false)
+		$('#blur').fadeIn()
 
 	'click .remove': ->
 		if confirm("Are you sure?")
@@ -89,10 +84,11 @@ Template.form.events {
 
 		template.find('#form').reset()
 		Session.set('form_visibility', 'invisible')
-		Session.set('saved', true)
+		$('#blur').fadeOut()
 
 	'click #cancel': (e, template) ->
 		Session.set('form_visibility', 'invisible')
 		Session.set('editing', false)
 		template.find('#form').reset()
+		$('#blur').fadeOut()
 }

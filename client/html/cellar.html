@@ -3,8 +3,8 @@
 </head>
 
 <body>
+	<div id="blur"></div>
 	{{> nav}}
-	{{> alerts}}
 	{{> form}}
 	{{> list}}
 </body>
@@ -30,14 +30,6 @@
 	</div>
 </template>
 
-<template name="alerts">
-	{{#if saved}}
-	<div class="alert alert-success">
-		<strong>Saved!</strong> your information has been saved.
-	</div>
-	{{/if}}
-</template>
-
 <template name="form">
 	<form id="form" class="shadow form-horizontal {{visibility}}">
 		<fieldset>
@@ -46,6 +38,14 @@
 				<label class="control-label" for="qty">Quantity</label>
 				<div class="controls">
 					<input type="text" name="qty" placeholder="" class="input-xlarge">
+					<p class="help-block"></p>
+				</div>
+			</div>
+			<div class="control-group">
+				<!-- Text input-->
+				<label class="control-label" for="name">Name</label>
+				<div class="controls">
+					<input type="text" name="name" placeholder="" class="input-xlarge">
 					<p class="help-block"></p>
 				</div>
 			</div>
@@ -70,14 +70,6 @@
 				<label class="control-label" for="winery">Winery</label>
 				<div class="controls">
 					<input type="text" name="winery" placeholder="" class="input-xlarge">
-					<p class="help-block"></p>
-				</div>
-			</div>
-			<div class="control-group">
-				<!-- Text input-->
-				<label class="control-label" for="name">Name</label>
-				<div class="controls">
-					<input type="text" name="name" placeholder="" class="input-xlarge">
 					<p class="help-block"></p>
 				</div>
 			</div>
