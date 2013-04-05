@@ -1,5 +1,5 @@
-body {
-	margin: 10px;
+#wrapper {
+	
 }
 #form {
 	height: 100%;
@@ -9,6 +9,7 @@ body {
 	left: 0;
 	padding-top: 10px;
 	background: #fff;
+	z-index: 10;
 	/*background-size: 100% 100%;*/
 }
 #form fieldset {
@@ -37,4 +38,10 @@ a {
 	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 	-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+#header-fixed { 
+    position: fixed; 
+    top: 0px;
+    display: none;
+    background-color: white;
 }

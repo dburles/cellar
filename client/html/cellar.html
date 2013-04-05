@@ -1,11 +1,14 @@
 <head>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 	<title>Wine Cellar</title>
 </head>
 
 <body>
-	{{> nav}}
-	{{> form}}
-	{{> list}}
+	<div id="wrapper">
+		{{> nav}}
+		{{> form}}
+		{{> list}}
+	</div>
 </body>
 
 <template name="nav">
@@ -151,9 +154,8 @@
 	</form>
 </template>
 
-
 <template name="list">
-	<table class="table table-condensed table-striped table-hover">
+	<table id="list" class="table table-condensed table-striped table-hover">
 		<thead>
 			<tr>
 				<th><a id="ref">#</a></th>
@@ -168,6 +170,8 @@
 				<th><a id="purchased">Purchased</a></th>
 				<th><a id="price">Price</a></th>
 				<th><a id="rating">Rating</a></th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>		
@@ -191,4 +195,5 @@
 			{{/each}}
 		</tbody>
 	</table>
+	<table id="header-fixed" class="shadow table table-condensed table-striped table-hover"></table>
 </template>
