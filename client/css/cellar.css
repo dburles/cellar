@@ -8,7 +8,7 @@ body {
 	top: 0;
 	left: 0;
 	padding-top: 10px;
-	background: #fff;
+	background: url('/images/wood.jpg');
 	/*background-size: 100% 100%;*/
 }
 #form fieldset {
@@ -17,9 +17,12 @@ body {
 #form .control-group {
 	margin-bottom: 3px;
 }
+#form label {
+	color: #fff;
+}
 #form textarea {
-	width: 95%
-;	height: 100px;
+	width: 95%;
+	height: 100px;
 }
 #form select {
 	width: 100%;
