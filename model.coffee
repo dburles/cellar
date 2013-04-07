@@ -1,4 +1,4 @@
-Wines = new Meteor.Collection 'wines'
+@Wines = new Meteor.Collection 'wines'
 
 Wines.allow {
 	insert: (userId, doc) ->
