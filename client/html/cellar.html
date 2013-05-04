@@ -1,7 +1,11 @@
 <head>
 	<title>Wine Cellar</title>
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="apple-touch-icon" href="/images/ios/touch-icon-iphone.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/ios/touch-icon-ipad.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/ios/touch-icon-iphone-retina.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/ios/touch-icon-ipad-retina.png" />
 </head>
 
 <body>
@@ -137,7 +141,7 @@
 				<!-- Textarea -->
 				<label for="noteS" class="control-label">Notes</label>
 				<div class="controls">
-					<div class="textarea">
+					<div class="textarea-xlarge">
 						<textarea name="notes" type="" class=""></textarea>
 					</div>
 				</div>
@@ -145,8 +149,9 @@
 			<div class="control-group">
 				<label class="control-label"></label>
 				<div class="controls">
-					<input class="btn btn-primary" type="submit" value="Save">
+					<a id="save" class="btn btn-primary">Save</a>
 					<a id="cancel" class="btn right" style="float: right">Cancel</a>
+					<a id="delete" class="btn btn-danger btn-mini right" style="float: right; margin-right: 5px"><i class="icon-trash"></i> Delete</a>
 				</div>
 			</div>
 		</fieldset>
@@ -159,12 +164,12 @@
 			<tr>
 				<th><a id="ref">#</a></th>
 				<th><a id="name">Name</a></th>
-				<th><a id="qty">Qty</a></th>
-				<th><a id="region">Region</a></th>
 				<th><a id="type">Type</a></th>
-				<th><a id="winery">Winery</a></th>				
-				<th><a id="year">Year</a></th>
 				<th><a id="description">Description</a></th>
+				<th><a id="region">Region</a></th>
+				<th><a id="winery">Winery</a></th>
+				<th><a id="year">Year</a></th>
+				<th><a id="qty">Qty</a></th>				
 				<th><a id="drink_by">Drink By</a></th>
 				<th><a id="purchased">Purchased</a></th>
 				<th><a id="price">Price</a></th>
@@ -176,18 +181,17 @@
 				<tr class="edit">
 					<td>{{ref}}</td>
 					<td>{{name}}</td>
-					<td>{{qty}}</td>
-					<td>{{region}}</td>
 					<td>{{type}}</td>
-					<td>{{winery}}</td>					
-					<td>{{year}}</td>
 					<td>{{description}}</td>
+					<td>{{region}}</td>
+					<td>{{winery}}</td>
+					<td>{{year}}</td>
+					<td>{{qty}}</td>					
 					<td>{{drink_by}}</td>
 					<td>{{purchased}}</td>
 					<td>{{price}}</td>
-					<td>{{rating}}</td>					
+					<td>{{rating}}</td>
 					<td class="edit"><a><i class="icon-edit"></i></a></td>
-					<td class="remove"><a><i class="icon-trash"></i></a></td>
 				</tr>
 			{{/each}}
 		</tbody>

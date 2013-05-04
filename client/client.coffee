@@ -40,10 +40,6 @@ Template.list.events {
 		Session.set('editing', @_id)
 		Session.set('form_visibility', 'visible')
 
-	'click .remove': ->
-		if confirm("Are you sure?")
-			Meteor.call('remove', @_id)
-
 	'click th a': (e) ->
 		Session.set('sort_field', e.target.id)
 
@@ -57,7 +53,7 @@ Template.form.visibility = ->
 	Session.get('form_visibility')
 
 Template.form.events {
-	'submit #form': (e, template) ->
+	'click #save': (e, template) ->
 		e.preventDefault()
 
 		data = {
@@ -87,4 +83,11 @@ Template.form.events {
 		Session.set('form_visibility', 'invisible')
 		Session.set('editing', false)
 		template.find('#form').reset()
+
+	'click #delete': ->
+		if confirm("Are you sure?")
+			Meteor.call('remove', Session.get('editing'))
+			Session.set('form_visibility', 'invisible')
+			Session.set('editing', false)
+			template.find('#form').reset()			
 }
