@@ -84,7 +84,7 @@ Template.form.events {
 		Session.set('editing', false)
 		template.find('#form').reset()
 
-	'click #delete': ->
+	'click #delete': (e, template) ->
 		if confirm("Are you sure?")
 			Meteor.call('remove', Session.get('editing'))
 			Session.set('form_visibility', 'invisible')
