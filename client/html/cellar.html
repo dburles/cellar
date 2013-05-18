@@ -17,20 +17,15 @@
 <template name="nav">
 	<div class="navbar">
 		<div class="navbar-inner">
-			<div class="container">
-				<a class="brand" href="#">Wine Cellar</a>
-				<div class="nav-collapse collapse">
-					<ul class="nav">
-						<li>
-							<a id="new" class="active"><i class="icon-glass"></i> Add a new wine</a>
-						</li>
-						<li>
-							<a id="auth">{{loginButtons align="right"}}</a>
-						</li>
-					</ul>
-				</div>
-				
-			</div>
+			<a class="brand" href="#">Wine Cellar</a>
+			<ul class="nav">
+				<li>
+					<a id="new" class="active"><i class="icon-glass icon-white"></i> Add a new wine</a>
+				</li>
+				<li>
+					{{loginButtons}}
+				</li>
+			</ul>
 		</div>
 	</div>
 </template>
@@ -178,7 +173,7 @@
 		</thead>
 		<tbody>		
 			{{#each wines}}
-				<tr class="edit">
+				<tr>
 					<td>{{ref}}</td>
 					<td>{{name}}</td>
 					<td>{{type}}</td>

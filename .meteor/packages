@@ -4,9 +4,8 @@
 # but you can also edit it by hand.
 
 preserve-inputs
-bootstrap
 coffeescript
 jquery
 accounts-base
-accounts-ui
 accounts-password
+accounts-ui-bootstrap-dropdown
