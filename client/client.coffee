@@ -7,7 +7,7 @@ Meteor.autorun ->
 	Meteor.subscribe('wines', Meteor.userId())
 
 Template.nav.events {
-	'click #new': ->
+	'tap #new, click #new': ->
 		if Meteor.userId()
 			Session.set('editing', false)
 			Session.set('form_visibility', 'visible')
@@ -21,8 +21,11 @@ Template.list.wines = ->
 	Wines.find({}, sort: sort)
 
 Template.list.events {
-	'click .edit': ->
+	'tap .edit, click .edit': ->
 		wine = Wines.findOne({ _id: @_id })
+
+		Session.set('editing', @_id)
+		Session.set('form_visibility', 'visible')
 
 		$('#form input[name="qty"]').val(wine.qty)
 		$('#form input[name="region"]').val(wine.region)
@@ -37,10 +40,7 @@ Template.list.events {
 		$('#form select[name="rating"]').val(wine.rating)
 		$('#form textarea[name="notes"]').val(wine.notes)
 
-		Session.set('editing', @_id)
-		Session.set('form_visibility', 'visible')
-
-	'click th a': (e) ->
+	'tap th a, click th a': (e) ->
 		Session.set('sort_field', e.target.id)
 
 		if Session.get('sort_by') == 1
@@ -53,7 +53,7 @@ Template.form.visibility = ->
 	Session.get('form_visibility')
 
 Template.form.events {
-	'click #save': (e, template) ->
+	'tap #save, click #save': (e, template) ->
 		e.preventDefault()
 
 		data = {
@@ -79,12 +79,12 @@ Template.form.events {
 		template.find('#form').reset()
 		Session.set('form_visibility', 'invisible')
 
-	'click #cancel': (e, template) ->
-		Session.set('form_visibility', 'invisible')
+	'tap #cancel, click #cancel': (e, template) ->
 		Session.set('editing', false)
 		template.find('#form').reset()
+		Session.set('form_visibility', 'invisible')
 
-	'click #delete': (e, template) ->
+	'tap #delete, click #delete': (e, template) ->
 		if confirm("Are you sure?")
 			Meteor.call('remove', Session.get('editing'))
 			Session.set('form_visibility', 'invisible')
