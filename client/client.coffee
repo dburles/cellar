@@ -42,9 +42,7 @@ Template.form.visibility = ->
 	Session.get('form_visibility')
 
 Template.form.events {
-	'tap #save, click #save': (e, template) ->
-		e.preventDefault()
-
+	'tap #save, click #save': ->
 		data = $('#form').toObject()
 
 		if Session.get('editing')
@@ -52,10 +50,10 @@ Template.form.events {
 		else
 			Meteor.call('create', data)
 
-	'tap #cancel, click #cancel': (e, template) ->
+	'tap #cancel, click #cancel': ->
 		Session.set('form_visibility', 'invisible')
 
-	'tap #delete, click #delete': (e, template) ->
+	'tap #delete, click #delete': ->
 		if confirm("Are you sure?")
 			Meteor.call('remove', Session.get('editing'))
 
