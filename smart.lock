@@ -7,8 +7,7 @@
   "dependencies": {
     "basePackages": {
       "accounts-ui-bootstrap-dropdown": {},
-      "form2js-jquery": {},
-      "spin": {}
+      "form2js-jquery": {}
     },
     "packages": {
       "accounts-ui-bootstrap-dropdown": {
@@ -20,11 +19,6 @@
         "git": "https://github.com/nate-strauser/meteor-form2js-jquery.git",
         "tag": "v0.1.2",
         "commit": "30b7d927feb6ef562ff5a980b7ecd72d46820b87"
-      },
-      "spin": {
-        "git": "https://github.com/SachaG/meteor-spin.git",
-        "tag": "v0.2.0",
-        "commit": "fd3a2871a69442848b4b4e74f5e1ae28fa4a95a4"
       }
     }
   }
