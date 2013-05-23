@@ -38,8 +38,12 @@ Template.list.events {
 			Session.set('sort_by', 1)
 }
 
-Template.form.visibility = ->
-	Session.get('form_visibility')
+Template.form.helpers {
+	visibility: ->
+		Session.get('form_visibility')
+	editing: ->
+		Session.get('editing')
+}
 
 Template.form.events {
 	'tap #save, click #save': (e, template) ->

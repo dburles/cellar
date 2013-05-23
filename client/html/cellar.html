@@ -146,7 +146,9 @@
 				<div class="controls">
 					<a id="save" class="btn btn-primary">Save</a>
 					<a id="cancel" class="btn right" style="float: right">Cancel</a>
-					<a id="delete" class="btn btn-danger btn-mini right" style="float: right; margin-right: 5px"><i class="icon-remove icon-white"></i> Delete</a>
+					{{#if editing}}
+						<a id="delete" class="btn btn-danger btn-mini right" style="float: right; margin-right: 5px"><i class="icon-remove icon-white"></i> Delete</a>
+					{{/if}}
 				</div>
 			</div>
 		</fieldset>
