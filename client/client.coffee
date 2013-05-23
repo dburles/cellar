@@ -27,67 +27,46 @@ Template.list.events {
 		Session.set('editing', @_id)
 		Session.set('form_visibility', 'visible')
 
-		$('#form input[name="qty"]').val(wine.qty)
-		$('#form input[name="region"]').val(wine.region)
-		$('#form input[name="type"]').val(wine.type)
-		$('#form input[name="winery"]').val(wine.winery)
-		$('#form input[name="name"]').val(wine.name)
-		$('#form input[name="year"]').val(wine.year)
-		$('#form input[name="description"]').val(wine.description)
-		$('#form input[name="drink_by"]').val(wine.drink_by)
-		$('#form input[name="purchased"]').val(wine.purchased)
-		$('#form input[name="price"]').val(wine.price)
-		$('#form select[name="rating"]').val(wine.rating)
-		$('#form textarea[name="notes"]').val(wine.notes)
+		$('#form').populate(wine)
 
 	'tap th a, click th a': (e) ->
 		Session.set('sort_field', e.target.id)
 
-		if Session.get('sort_by') == 1
+		if Session.get('sort_by') is 1
 			Session.set('sort_by', -1)
 		else
 			Session.set('sort_by', 1)
 }
 
-Template.form.visibility = ->
-	Session.get('form_visibility')
+Template.form.helpers {
+	visibility: ->
+		Session.get('form_visibility')
+	editing: ->
+		Session.get('editing')
+}
 
 Template.form.events {
 	'tap #save, click #save': (e, template) ->
-		e.preventDefault()
-
-		data = {
-			qty: template.find('input[name="qty"]').value,
-			region: template.find('input[name="region"]').value,
-			type: template.find('input[name="type"]').value,
-			winery: template.find('input[name="winery"]').value,
-			name: template.find('input[name="name"]').value,
-			year: template.find('input[name="year"]').value,
-			description: template.find('input[name="description"]').value,
-			drink_by: template.find('input[name="drink_by"]').value,
-			purchased: template.find('input[name="purchased"]').value,
-			price: template.find('input[name="price"]').value,
-			rating: template.find('select[name="rating"]').value,
-			notes: template.find('textarea[name="notes"]').value,
-		}
+		data = $('#form').toObject()
 
 		if Session.get('editing')
 			Meteor.call('update', Session.get('editing'), data)
 		else
 			Meteor.call('create', data)
 
-		template.find('#form').reset()
-		Session.set('form_visibility', 'invisible')
+		formReset(template)
 
 	'tap #cancel, click #cancel': (e, template) ->
-		Session.set('editing', false)
-		template.find('#form').reset()
 		Session.set('form_visibility', 'invisible')
+		formReset(template)
 
 	'tap #delete, click #delete': (e, template) ->
 		if confirm("Are you sure?")
 			Meteor.call('remove', Session.get('editing'))
-			Session.set('form_visibility', 'invisible')
-			Session.set('editing', false)
-			template.find('#form').reset()			
+			formReset(template)
 }
+
+formReset = (template) ->
+	Session.set('editing', false)
+	template.find('#form').reset()
+	Session.set('form_visibility', 'invisible')

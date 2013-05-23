@@ -6,13 +6,19 @@
   },
   "dependencies": {
     "basePackages": {
-      "accounts-ui-bootstrap-dropdown": {}
+      "accounts-ui-bootstrap-dropdown": {},
+      "form2js-jquery": {}
     },
     "packages": {
       "accounts-ui-bootstrap-dropdown": {
         "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
         "tag": "v0.1.0",
         "commit": "e66558aaa4dc0d85c6ddb63bd2289b38c2b793f6"
+      },
+      "form2js-jquery": {
+        "git": "https://github.com/nate-strauser/meteor-form2js-jquery.git",
+        "tag": "v0.1.2",
+        "commit": "30b7d927feb6ef562ff5a980b7ecd72d46820b87"
       }
     }
   }
