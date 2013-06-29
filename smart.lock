@@ -1,24 +1,26 @@
 {
-  "meteor": {
-    "git": "https://github.com/meteor/meteor.git",
-    "branch": "master",
-    "commit": "5d736d4bf0448c7db1f9b47124dfafc34a9631bb"
-  },
+  "meteor": {},
   "dependencies": {
     "basePackages": {
       "accounts-ui-bootstrap-dropdown": {},
-      "form2js-jquery": {}
+      "form2js-jquery": {},
+      "accounting": {}
     },
     "packages": {
       "accounts-ui-bootstrap-dropdown": {
         "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
-        "tag": "v0.1.0",
-        "commit": "e66558aaa4dc0d85c6ddb63bd2289b38c2b793f6"
+        "tag": "v0.1.3",
+        "commit": "42aa4d95070a2bd2aa200dcfd6c0edc69e3815c3"
       },
       "form2js-jquery": {
         "git": "https://github.com/nate-strauser/meteor-form2js-jquery.git",
         "tag": "v0.1.2",
         "commit": "30b7d927feb6ef562ff5a980b7ecd72d46820b87"
+      },
+      "accounting": {
+        "git": "https://github.com/IainShigeoka/meteor-accounting.git",
+        "tag": "v0.3.2.3",
+        "commit": "330cf532e6ac7282cf85ef3b83a54c1a25f5bdae"
       }
     }
   }

@@ -15,6 +15,15 @@ Template.nav.events {
 			alert("Please sign-in first!")
 }
 
+Template.nav.helpers {
+	totalValue: ->
+		total = 0
+		Wines.find().map (wine) -> total += parseInt(wine.price)
+		accounting.formatMoney total
+	totalWines: ->
+		Wines.find().count()
+}
+
 Template.list.wines = ->
 	sort = {}
 	sort[Session.get('sort_field')] = Session.get('sort_by')
