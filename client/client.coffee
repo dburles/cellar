@@ -71,7 +71,8 @@ Template.form.events {
 		else
 			Meteor.call('create', data)
 
-		formReset(template)
+		Session.set('editing', false)
+		Session.set('form_visibility', 'invisible')
 
 	'tap #cancel, click #cancel': (e, template) ->
 		Session.set('form_visibility', 'invisible')
