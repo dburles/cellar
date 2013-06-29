@@ -31,7 +31,7 @@ body {
 	display: block;
 }
 .invisible {
-	display: none;
+	display: hidden;
 }
 a {
 	cursor: pointer;

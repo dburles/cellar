@@ -7,10 +7,11 @@ Meteor.autorun ->
 	Meteor.subscribe('wines', Meteor.userId())
 
 Template.nav.events {
-	'tap #new, click #new': ->
+	'tap #new, click #new': (e, template) ->
 		if Meteor.userId()
 			Session.set('editing', false)
 			Session.set('form_visibility', 'visible')
+			$('#form')[0].reset()
 		else
 			alert("Please sign-in first!")
 }
@@ -29,7 +30,7 @@ Template.nav.helpers {
 			price = parseInt(wine.price) * wine.qty
 			if price != 'NaN' and price
 				total += price
-		accounting.formatMoney total	
+		accounting.formatMoney total
 }
 
 Template.list.wines = ->
