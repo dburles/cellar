@@ -18,7 +18,10 @@ Template.nav.events {
 Template.nav.helpers {
 	totalValue: ->
 		total = 0
-		Wines.find().map (wine) -> total += parseInt(wine.price)
+		Wines.find().map (wine) ->
+			price = parseInt(wine.price)
+			if price != 'NaN' and price
+				total += price
 		accounting.formatMoney total
 	totalWines: ->
 		Wines.find().count()
