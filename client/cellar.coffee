@@ -2,6 +2,7 @@ Session.setDefault('form_visibility', 'invisible')
 Session.setDefault('editing', false)
 Session.setDefault('sort_field', 'ref')
 Session.setDefault('sort_by', -1)
+Session.setDefault('archive', false)
 
 Deps.autorun ->
 	Meteor.subscribe('wines', Meteor.userId())
@@ -40,7 +41,10 @@ Template.nav.helpers {
 Template.list.wines = ->
 	sort = {}
 	sort[Session.get('sort_field')] = Session.get('sort_by')
-	Wines.find({}, sort: sort)
+	if Session.get('archive')
+		Wines.find({ qty: '0' }, sort: sort)
+	else
+		Wines.find({ qty: { $gt: '0' }}, sort: sort)
 
 Template.list.events {
 	'tap .edit, click .edit': ->

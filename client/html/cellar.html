@@ -10,20 +10,37 @@
 
 <body>
 	{{> nav}}
+	{{renderPage}}
+</body>
+
+<template name="home">
 	{{> form}}
 	{{> list}}
-</body>
+</template>
+
+<template name="archive">
+	{{> form}}
+	{{> list}}
+</template>
+
+<template name="not_found">
+	<h1>Page not found</h1>
+</template>
 
 <template name="nav">
 	<div class="navbar">
 		<div class="navbar-inner">
-			<a class="brand" href="#">Wine Cellar</a>
+			<a class="brand">Wine Cellar</a>
 			<ul class="nav">
 				<li>
 					<a id="new" class="active"><i class="icon-glass icon-white"></i> Add a new wine</a>
 				</li>
+
 				<li>
-					{{loginButtons}}
+					<a href="{{homePath}}"><i class="icon-list icon-white"></i> Home</a>
+				</li>
+				<li>
+					<a href="{{archivePath}}"><i class="icon-time icon-white"></i> Archive</a>
 				</li>
 			</ul>
 			<ul class="nav pull-right">
@@ -32,6 +49,9 @@
 				</li>
 				<li>
 					<a>{{totalValue}}</a>
+				</li>
+				<li>
+					{{loginButtons}}
 				</li>
 			</ul>
 		</div>
