@@ -1,4 +1,7 @@
 @Wines = new Meteor.Collection 'wines'
+@Wineries = new Meteor.Collection 'wineries'
+@Regions = new Meteor.Collection 'regions'
+@Varieties = new Meteor.Collection 'varieties'
 
 Wines.allow {
 	insert: (userId, doc) ->

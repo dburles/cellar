@@ -46,7 +46,6 @@
 				<label class="control-label" for="qty">Quantity</label>
 				<div class="controls">
 					<input type="text" name="qty" placeholder="" class="input-xlarge">
-					<p class="help-block"></p>
 				</div>
 			</div>
 			<div class="control-group">
@@ -54,15 +53,13 @@
 				<label class="control-label" for="name">Name</label>
 				<div class="controls">
 					<input type="text" name="name" placeholder="" class="input-xlarge">
-					<p class="help-block"></p>
 				</div>
 			</div>
 			<div class="control-group">
 				<!-- Text input-->
 				<label class="control-label" for="type">Type</label>
 				<div class="controls">
-					<input type="text" name="type" placeholder="" class="input-xlarge">
-					<p class="help-block"></p>
+					<input type="text" name="type" placeholder="" class="input-xlarge" data-provide="typeahead" data-source="{{autoCompleteVarieties}}">
 				</div>
 			</div>
 			<div class="control-group">
@@ -70,23 +67,20 @@
 				<label class="control-label" for="description">Description</label>
 				<div class="controls">
 					<input type="text" name="description" placeholder="" class="input-xlarge">
-					<p class="help-block"></p>
 				</div>
 			</div>
 			<div class="control-group">
 				<!-- Text input-->
 				<label class="control-label" for="winery">Winery</label>
 				<div class="controls">
-					<input type="text" name="winery" placeholder="" class="input-xlarge">
-					<p class="help-block"></p>
+					<input type="text" name="winery" placeholder="" class="input-xlarge" data-provide="typeahead" data-source="{{autoCompleteWineries}}">
 				</div>
 			</div>
 			<div class="control-group">
 				<!-- Text input-->
 				<label class="control-label" for="region">Region</label>
 				<div class="controls">
-					<input type="text" name="region" placeholder="" class="input-xlarge">
-					<p class="help-block"></p>
+					<input type="text" name="region" placeholder="" class="input-xlarge" data-provide="typeahead" data-source="{{autoCompleteRegions}}">
 				</div>
 			</div>
 			<div class="control-group">
@@ -94,7 +88,6 @@
 				<label class="control-label" for="year">Year</label>
 				<div class="controls">
 					<input type="text" name="year" placeholder="" class="input-xlarge">
-					<p class="help-block"></p>
 				</div>
 			</div>
 			<div class="control-group">
@@ -102,7 +95,6 @@
 				<label class="control-label" for="drink_by">Drink By</label>
 				<div class="controls">
 					<input type="text" name="drink_by" placeholder="" class="input-xlarge">
-					<p class="help-block"></p>
 				</div>
 			</div>
 			<div class="control-group">
@@ -110,7 +102,6 @@
 				<label class="control-label" for="purchased">Purchased</label>
 				<div class="controls">
 					<input type="text" name="purchased" placeholder="" class="input-xlarge">
-					<p class="help-block"></p>
 				</div>
 			</div>
 			<div class="control-group">
@@ -118,7 +109,6 @@
 				<label class="control-label" for="price">Price</label>
 				<div class="controls">
 					<input type="text" name="price" placeholder="" class="input-xlarge">
-					<p class="help-block"></p>
 				</div>
 			</div>
 			<div class="control-group">
