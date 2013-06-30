@@ -3,8 +3,12 @@ Session.setDefault('editing', false)
 Session.setDefault('sort_field', 'ref')
 Session.setDefault('sort_by', -1)
 
-Meteor.autorun ->
+Deps.autorun ->
 	Meteor.subscribe('wines', Meteor.userId())
+
+Meteor.subscribe 'wineries'
+Meteor.subscribe 'regions'
+Meteor.subscribe 'varieties'
 
 Template.nav.events {
 	'tap #new, click #new': (e, template) ->
@@ -61,6 +65,12 @@ Template.form.helpers {
 		Session.get('form_visibility')
 	editing: ->
 		Session.get('editing')
+	autoCompleteWineries: ->
+		"[" + Wineries.find().map((winery) -> '"' + winery.name + '"').join(",") + "]"
+	autoCompleteRegions: ->
+		"[" + Regions.find().map((region) -> '"' + region.name + '"').join(",") + "]"
+	autoCompleteVarieties: ->
+		"[" + Varieties.find().map((variety) -> '"' + variety.name + '"').join(",") + "]"
 }
 
 Template.form.events {
