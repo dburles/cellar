@@ -9,9 +9,19 @@
 </head>
 
 <body>
+	{{> loading}}
 	{{> nav}}
 	{{renderPage}}
 </body>
+
+<template name="loading">
+	{{#if areCollectionsReady}}
+		{{> loaded}}
+	{{/if}}
+</template>
+
+<template name="loaded">
+</template>
 
 <template name="home">
 	{{> form}}

@@ -4,12 +4,28 @@ Session.setDefault('sort_field', 'ref')
 Session.setDefault('sort_by', -1)
 Session.setDefault('archive', false)
 
-Deps.autorun ->
-	Meteor.subscribe('wines', Meteor.userId())
+Meteor.startup ->
+	$('body').spin('modal')
 
-Meteor.subscribe 'wineries'
-Meteor.subscribe 'regions'
-Meteor.subscribe 'varieties'
+globalSubscriptionHandles = []
+
+globalSubscriptionHandles.push Meteor.subscribe 'wineries'
+globalSubscriptionHandles.push Meteor.subscribe 'regions'
+globalSubscriptionHandles.push Meteor.subscribe 'varieties'
+
+Deps.autorun ->
+	if Meteor.user()
+		globalSubscriptionHandles.push Meteor.subscribe('wines', Meteor.userId())
+
+Template.loading.areCollectionsReady = ->
+	isReady = globalSubscriptionHandles.every( (handle) ->
+		handle.ready()
+	)
+	isReady	
+
+# this feels so hack, but it works nicely
+Template.loaded.rendered = ->
+	$('body').spin('modal')
 
 Template.nav.events {
 	'tap #new, click #new': (e, template) ->
