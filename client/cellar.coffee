@@ -9,7 +9,6 @@ Meteor.startup ->
 	Session.set 'loaded', false
 
 globalSubscriptionHandles = []
-
 globalSubscriptionHandles.push Meteor.subscribe 'wineries'
 globalSubscriptionHandles.push Meteor.subscribe 'regions'
 globalSubscriptionHandles.push Meteor.subscribe 'varieties'
@@ -18,12 +17,17 @@ Deps.autorun ->
 	if Meteor.user()
 		globalSubscriptionHandles.push Meteor.subscribe('wines', Meteor.userId(), Session.get 'archive')
 	
-	isReady = globalSubscriptionHandles.every( (handle) ->
-		handle.ready()
-	)
+	isReady = globalSubscriptionHandles.every (handle) -> handle.ready()
+
 	if isReady and not Session.get 'loaded'
 		$('body').spin('modal')
 		Session.set 'loaded', true
+		# autocompletes
+		$('input[name="winery"]').typeahead {
+			source: Wineries.find().map (winery) -> winery.name
+		}
+		$('input[name="region"]').typeahead { source: Regions.find().map (region) -> region.name }
+		$('input[name="type"]').typeahead { source: Varieties.find().map (variety) -> variety.name }
 
 Template.nav.events {
 	'click #new': (e, template) ->
@@ -85,12 +89,6 @@ Template.form.helpers {
 		Session.get('form_visibility')
 	editing: ->
 		Session.get('editing')
-	autoCompleteWineries: ->
-		"[" + Wineries.find().map((winery) -> '"' + winery.name + '"').join(",") + "]"
-	autoCompleteRegions: ->
-		"[" + Regions.find().map((region) -> '"' + region.name + '"').join(",") + "]"
-	autoCompleteVarieties: ->
-		"[" + Varieties.find().map((variety) -> '"' + variety.name + '"').join(",") + "]"
 }
 
 Template.form.events {
