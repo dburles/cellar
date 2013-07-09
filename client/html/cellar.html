@@ -10,14 +10,8 @@
 
 <body>
 	{{> nav}}
-	{{> page}}
+	{{renderPage}}
 </body>
-
-<template name="page">
-	{{#if hasWines}}
-		{{renderPage}}
-	{{/if}}
-</template>
 
 <template name="home">
 	{{> form}}
@@ -180,41 +174,43 @@
 </template>
 
 <template name="list">
-	<table class="table table-condensed table-striped table-hover">
-		<thead>
-			<tr>
-				<th><a id="ref">#</a></th>
-				<th><a id="name">Name</a></th>
-				<th><a id="type">Type</a></th>
-				<th><a id="description">Description</a></th>
-				<th><a id="winery">Winery</a></th>
-				<th><a id="region">Region</a></th>
-				<th><a id="year">Year</a></th>
-				<th><a id="qty">Qty</a></th>				
-				<th><a id="drink_by">Drink By</a></th>
-				<th><a id="purchased">Purchased</a></th>
-				<th><a id="price">Price</a></th>
-				<th><a id="rating">Rating</a></th>
-			</tr>
-		</thead>
-		<tbody>		
-			{{#each wines}}
+	{{#if hasWines}}
+		<table class="table table-condensed table-striped table-hover">
+			<thead>
 				<tr>
-					<td>{{ref}}</td>
-					<td>{{name}}</td>
-					<td>{{type}}</td>
-					<td>{{description}}</td>					
-					<td>{{winery}}</td>
-					<td>{{region}}</td>
-					<td>{{year}}</td>
-					<td>{{qty}}</td>					
-					<td>{{drink_by}}</td>
-					<td>{{purchased}}</td>
-					<td>{{price}}</td>
-					<td>{{rating}}</td>
-					<td class="edit"><a><i class="icon-edit"></i></a></td>
+					<th><a id="ref">#</a></th>
+					<th><a id="name">Name</a></th>
+					<th><a id="type">Type</a></th>
+					<th><a id="description">Description</a></th>
+					<th><a id="winery">Winery</a></th>
+					<th><a id="region">Region</a></th>
+					<th><a id="year">Year</a></th>
+					<th><a id="qty">Qty</a></th>				
+					<th><a id="drink_by">Drink By</a></th>
+					<th><a id="purchased">Purchased</a></th>
+					<th><a id="price">Price</a></th>
+					<th><a id="rating">Rating</a></th>
 				</tr>
-			{{/each}}
-		</tbody>
-	</table>
+			</thead>
+			<tbody>		
+				{{#each wines}}
+					<tr>
+						<td>{{ref}}</td>
+						<td>{{name}}</td>
+						<td>{{type}}</td>
+						<td>{{description}}</td>					
+						<td>{{winery}}</td>
+						<td>{{region}}</td>
+						<td>{{year}}</td>
+						<td>{{qty}}</td>					
+						<td>{{drink_by}}</td>
+						<td>{{purchased}}</td>
+						<td>{{price}}</td>
+						<td>{{rating}}</td>
+						<td class="edit"><a><i class="icon-edit"></i></a></td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	{{/if}}
 </template>

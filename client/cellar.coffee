@@ -52,19 +52,15 @@ Template.nav.helpers {
 		accounting.formatMoney total
 }
 
-Template.page.helpers {
+Template.list.helpers {
 	hasWines: ->
 		Wines.find().count() > 0
-}
 
-Template.list.wines = ->
-	sort = {}
-	sort[Session.get('sort_field')] = Session.get('sort_by')
-	Wines.find {}, sort: sort
-	# if Session.get('archive')
-	# 	Wines.find({ qty: '0' }, sort: sort)
-	# else
-	# 	Wines.find({ qty: { $gt: '0' }}, sort: sort)
+	wines: ->
+		sort = {}
+		sort[Session.get('sort_field')] = Session.get('sort_by')
+		Wines.find {}, sort: sort
+}
 
 Template.list.events {
 	'click .edit': ->
