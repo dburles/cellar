@@ -23,9 +23,7 @@ Deps.autorun ->
 		$('body').spin('modal')
 		Session.set 'loaded', true
 		# autocompletes
-		$('input[name="winery"]').typeahead {
-			source: Wineries.find().map (winery) -> winery.name
-		}
+		$('input[name="winery"]').typeahead { source: Wineries.find().map (winery) -> winery.name }
 		$('input[name="region"]').typeahead { source: Regions.find().map (region) -> region.name }
 		$('input[name="type"]').typeahead { source: Varieties.find().map (variety) -> variety.name }
 
