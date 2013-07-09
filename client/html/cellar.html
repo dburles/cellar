@@ -10,8 +10,14 @@
 
 <body>
 	{{> nav}}
-	{{renderPage}}
+	{{> page}}
 </body>
+
+<template name="page">
+	{{#if hasWines}}
+		{{renderPage}}
+	{{/if}}
+</template>
 
 <template name="home">
 	{{> form}}

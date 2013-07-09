@@ -3,10 +3,10 @@ Session.setDefault('editing', false)
 Session.setDefault('sort_field', 'ref')
 Session.setDefault('sort_by', -1)
 Session.setDefault('archive', false)
-Session.setDefault('loaded', false)
 
 Meteor.startup ->
 	$('body').spin('modal')
+	Session.set('loaded', false)
 
 globalSubscriptionHandles = []
 
@@ -16,7 +16,7 @@ globalSubscriptionHandles.push Meteor.subscribe 'varieties'
 
 Deps.autorun ->
 	if Meteor.user()
-		globalSubscriptionHandles.push Meteor.subscribe('wines', Meteor.userId())
+		globalSubscriptionHandles.push Meteor.subscribe('wines', Meteor.userId(), Session.get 'archive')
 	
 	isReady = globalSubscriptionHandles.every( (handle) ->
 		handle.ready()
@@ -52,13 +52,19 @@ Template.nav.helpers {
 		accounting.formatMoney total
 }
 
+Template.page.helpers {
+	hasWines: ->
+		Wines.find().count() > 0
+}
+
 Template.list.wines = ->
 	sort = {}
 	sort[Session.get('sort_field')] = Session.get('sort_by')
-	if Session.get('archive')
-		Wines.find({ qty: '0' }, sort: sort)
-	else
-		Wines.find({ qty: { $gt: '0' }}, sort: sort)
+	Wines.find {}, sort: sort
+	# if Session.get('archive')
+	# 	Wines.find({ qty: '0' }, sort: sort)
+	# else
+	# 	Wines.find({ qty: { $gt: '0' }}, sort: sort)
 
 Template.list.events {
 	'tap .edit, click .edit': ->

@@ -1,5 +1,8 @@
-Meteor.publish 'wines', (owner) ->
-	Wines.find { owner: owner }
+Meteor.publish 'wines', (owner, archive) ->
+	if archive
+    Wines.find { qty: '0', owner: owner }
+  else
+    Wines.find { qty: { $gt: '0' }, owner: owner }
 
 Meteor.publish 'wineries', ->
 	Wineries.find()
