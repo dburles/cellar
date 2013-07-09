@@ -3,6 +3,7 @@
     "accounts-ui-bootstrap-dropdown": {},
     "form2js-jquery": {},
     "accounting": {},
-    "router": {}
+    "router": {},
+    "fastclick": {}
   }
 }
