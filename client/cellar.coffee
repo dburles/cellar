@@ -1,12 +1,12 @@
-Session.setDefault('form_visibility', 'invisible')
-Session.setDefault('editing', false)
-Session.setDefault('sort_field', 'ref')
-Session.setDefault('sort_by', -1)
-Session.setDefault('archive', false)
+Session.setDefault 'form_visibility', 'invisible'
+Session.setDefault 'editing', false
+Session.setDefault 'sort_field', 'ref'
+Session.setDefault 'sort_by', -1
+Session.setDefault 'archive', false
 
 Meteor.startup ->
 	$('body').spin('modal')
-	Session.set('loaded', false)
+	Session.set 'loaded', false
 
 globalSubscriptionHandles = []
 
@@ -21,15 +21,15 @@ Deps.autorun ->
 	isReady = globalSubscriptionHandles.every( (handle) ->
 		handle.ready()
 	)
-	if isReady and !Session.get('loaded')
+	if isReady and not Session.get 'loaded'
 		$('body').spin('modal')
-		Session.set('loaded', true)
+		Session.set 'loaded', true
 
 Template.nav.events {
-	'tap #new, click #new': (e, template) ->
+	'click #new': (e, template) ->
 		if Meteor.userId()
-			Session.set('editing', false)
-			Session.set('form_visibility', 'visible')
+			Session.set 'editing', false
+			Session.set 'form_visibility', 'visible'
 			$('#form')[0].reset()
 		else
 			alert("Please sign-in first!")
@@ -67,21 +67,21 @@ Template.list.wines = ->
 	# 	Wines.find({ qty: { $gt: '0' }}, sort: sort)
 
 Template.list.events {
-	'tap .edit, click .edit': ->
+	'click .edit': ->
 		wine = Wines.findOne({ _id: @_id })
 
-		Session.set('editing', @_id)
-		Session.set('form_visibility', 'visible')
+		Session.set 'editing', @_id
+		Session.set 'form_visibility', 'visible'
 
 		$('#form').populate(wine)
 
-	'tap th a, click th a': (e) ->
-		Session.set('sort_field', e.target.id)
+	'click th a': (e) ->
+		Session.set 'sort_field', e.target.id
 
 		if Session.get('sort_by') is 1
-			Session.set('sort_by', -1)
+			Session.set 'sort_by', -1
 		else
-			Session.set('sort_by', 1)
+			Session.set 'sort_by', 1
 }
 
 Template.form.helpers {
@@ -98,7 +98,7 @@ Template.form.helpers {
 }
 
 Template.form.events {
-	'tap #save, click #save': (e, template) ->
+	'click #save': (e, template) ->
 		data = $('#form').toObject()
 
 		if Session.get('editing')
@@ -106,20 +106,20 @@ Template.form.events {
 		else
 			Meteor.call('create', data)
 
-		Session.set('editing', false)
-		Session.set('form_visibility', 'invisible')
+		Session.set 'editing', false
+		Session.set 'form_visibility', 'invisible'
 
-	'tap #cancel, click #cancel': (e, template) ->
-		Session.set('form_visibility', 'invisible')
+	'click #cancel': (e, template) ->
+		Session.set 'form_visibility', 'invisible'
 		formReset(template)
 
-	'tap #delete, click #delete': (e, template) ->
+	'click #delete': (e, template) ->
 		if confirm("Are you sure?")
 			Meteor.call('remove', Session.get('editing'))
 			formReset(template)
 }
 
 formReset = (template) ->
-	Session.set('editing', false)
+	Session.set 'editing', false
 	template.find('#form').reset()
-	Session.set('form_visibility', 'invisible')
+	Session.set 'form_visibility', 'invisible'
