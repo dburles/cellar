@@ -3,6 +3,7 @@ Session.setDefault('editing', false)
 Session.setDefault('sort_field', 'ref')
 Session.setDefault('sort_by', -1)
 Session.setDefault('archive', false)
+Session.setDefault('loaded', false)
 
 Meteor.startup ->
 	$('body').spin('modal')
@@ -16,16 +17,13 @@ globalSubscriptionHandles.push Meteor.subscribe 'varieties'
 Deps.autorun ->
 	if Meteor.user()
 		globalSubscriptionHandles.push Meteor.subscribe('wines', Meteor.userId())
-
-Template.loading.areCollectionsReady = ->
+	
 	isReady = globalSubscriptionHandles.every( (handle) ->
 		handle.ready()
 	)
-	isReady	
-
-# this feels so hack, but it works nicely
-Template.loaded.rendered = ->
-	$('body').spin('modal')
+	if isReady and !Session.get('loaded')
+		$('body').spin('modal')
+		Session.set('loaded', true)
 
 Template.nav.events {
 	'tap #new, click #new': (e, template) ->
