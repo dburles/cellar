@@ -115,3 +115,8 @@ formReset = (template) ->
 	Session.set 'editing', false
 	template.find('#form').reset()
 	Session.set 'form_visibility', 'invisible'
+
+Template.list.rendered = ->
+	$('.row').packery({
+		itemSelector: '.span3'
+	});

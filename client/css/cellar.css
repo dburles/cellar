@@ -2,6 +2,7 @@ body {
 	margin: 10px;
 }
 #form {
+	z-index: 10;
 	height: 100%;
 	overflow: auto;
 	position: fixed;

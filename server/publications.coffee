@@ -12,3 +12,6 @@ Meteor.publish 'regions', ->
 
 Meteor.publish 'varieties', ->
   Varieties.find()
+
+# Meteor.publish 'varieties', search ->
+#   Varieties.find({ name: { $regex: search, $options: 'i' }})
