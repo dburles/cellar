@@ -65,7 +65,8 @@ Template.list.helpers {
 }
 
 Template.list.events {
-	'click .edit': ->
+	'click .edit': (e) ->
+		e.preventDefault()
 		wine = Wines.findOne({ _id: @_id })
 
 		Session.set 'editing', @_id
@@ -74,6 +75,7 @@ Template.list.events {
 		$('#form').populate(wine)
 
 	'click th a': (e) ->
+		e.preventDefault()
 		Session.set 'sort_field', e.target.id
 
 		if Session.get('sort_by') is 1
@@ -91,6 +93,7 @@ Template.form.helpers {
 
 Template.form.events {
 	'click #save': (e, template) ->
+		e.preventDefault()
 		data = $('#form').toObject()
 
 		if Session.get('editing')
@@ -102,10 +105,12 @@ Template.form.events {
 		Session.set 'form_visibility', 'invisible'
 
 	'click #cancel': (e, template) ->
+		e.preventDefault()
 		Session.set 'form_visibility', 'invisible'
 		formReset(template)
 
 	'click #delete': (e, template) ->
+		e.preventDefault()
 		if confirm("Are you sure?")
 			Meteor.call('remove', Session.get('editing'))
 			formReset(template)

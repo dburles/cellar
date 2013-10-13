@@ -208,10 +208,11 @@
 		{{#each wines}}
 			<div class="span3">
 				<h3><a href="">{{year}} {{name}}</a><h3>
-				<h4>{{type}} {{description}}</h4>
+				<h4>{{description}} <small>{{type}}</small></h4>
 				<h5>{{region}}</h5>
 				<p>{{notes}}</p>
-				<span class="badge">x {{qty}}</span> <span class="badge">${{price}}</span>
+				<span class="badge">x {{qty}}</span>
+				<span class="badge">${{price}}</span>
 				<br />
 				<a class="btn edit pull-right">Edit</a>
 			</div>
