@@ -126,6 +126,8 @@ formReset = (template) ->
 	template.find('#form').reset()
 	Session.set 'form_visibility', 'invisible'
 
+
 Template.list.rendered = ->
 	# should be okay.
-	new Packery('.row')
+	if Session.equals 'loaded', true
+		new Packery('.row')
