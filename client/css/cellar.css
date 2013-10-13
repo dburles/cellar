@@ -1,6 +1,9 @@
 body {
 	margin: 10px;
 }
+.span3 {
+	overflow: hidden;
+}
 #form {
 	z-index: 10;
 	height: 100%;
