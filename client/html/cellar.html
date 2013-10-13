@@ -1,6 +1,5 @@
 <head>
 	<title>Wine Cellar</title>
-	<meta name="viewport" content="width=device-width">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<link rel="apple-touch-icon" href="/images/ios/touch-icon-iphone.png" />
@@ -191,7 +190,7 @@
 			<div class="control-group">
 				<label class="control-label"></label>
 				<div class="controls">
-					<a id="save" class="btn btn-primary">Save</a>
+					<a id="save" class="btn btn-primary btn-large">Save</a>
 					<a id="cancel" class="btn right" style="float: right">Cancel</a>
 					{{#if editing}}
 						<a id="delete" class="btn btn-danger btn-mini right" style="float: right; margin-right: 5px"><i class="icon-remove icon-white"></i> Delete</a>
@@ -207,14 +206,12 @@
 		<div class="row">
 		{{#each wines}}
 			<div class="span3">
-				<h3><a href="">{{year}} {{name}}</a><h3>
+				<h3><a href="" class="edit">{{year}} {{name}}</a><h3>
 				<h4>{{description}} <small>{{type}}</small></h4>
 				<h5>{{region}}</h5>
 				<p>{{notes}}</p>
 				<span class="badge">x {{qty}}</span>
 				<span class="badge">${{price}}</span>
-				<br />
-				<a class="btn edit pull-right">Edit</a>
 			</div>
 		{{/each}}
 		</div>

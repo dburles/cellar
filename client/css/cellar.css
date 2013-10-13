@@ -4,6 +4,9 @@ body {
 .span3 {
 	overflow: hidden;
 }
+a {
+	color: #000;
+}
 #form {
 	z-index: 10;
 	height: 100%;
