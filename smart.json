@@ -4,6 +4,7 @@
     "form2js-jquery": {},
     "accounting": {},
     "router": {},
-    "fastclick": {}
+    "fastclick": {},
+    "packery": {}
   }
 }

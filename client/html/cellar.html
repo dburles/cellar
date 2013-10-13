@@ -205,17 +205,22 @@
 	{{#if hasWines}}
 		<div class="row">
 		{{#each wines}}
-			<div class="span3">
-				<h3><a href="" class="edit">{{year}} {{name}}</a><h3>
-				<h4>{{description}} <small>{{type}}</small></h4>
-				<h5>{{region}}</h5>
-				<p>{{notes}}</p>
-				<span class="badge">x {{qty}}</span>
-				<span class="badge">${{price}}</span>
-			</div>
+			{{> item}}
 		{{/each}}
 		</div>
 	{{/if}}
+</template>
+
+<template name="item">
+	<div class="span3">
+		<h3><a href="" class="edit">{{year}} {{name}}</a><h3>
+		<h4>{{description}} <small>{{type}}</small></h4>
+		<h5>{{region}}</h5>
+		<p>{{notes}}</p>
+		<span class="badge">#{{ref}}</span>
+		<span class="badge">x {{qty}}</span>
+		<span class="badge">${{price}}</span>
+	</div>
 </template>
 
 <template name="listOld">

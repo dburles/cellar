@@ -6,7 +6,8 @@
       "form2js-jquery": {},
       "accounting": {},
       "router": {},
-      "fastclick": {}
+      "fastclick": {},
+      "packery": {}
     },
     "packages": {
       "accounts-ui-bootstrap-dropdown": {
@@ -33,6 +34,11 @@
         "git": "https://github.com/percolatestudio/meteor-fastclick",
         "tag": "v0.6.7",
         "commit": "fcb3bfd34d9f6874e626b4e24e8f54107938db41"
+      },
+      "packery": {
+        "git": "https://github.com/dburles/meteor-packery.git",
+        "tag": "v0.1.0",
+        "commit": "8e327fc10c5cbb0120b0df08677d8ca42f8cfbc7"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

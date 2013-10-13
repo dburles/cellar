@@ -48,3 +48,16 @@ a {
 	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
 	-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
 }
+
+.rounded {
+	border-radius: 10px;
+}
+h4 small {
+	color: #CCC;
+}
+
+.badge {
+	/*background: #AAA;*/
+	background: #ddd;
+	color: #333;
+}

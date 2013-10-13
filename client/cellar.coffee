@@ -96,6 +96,10 @@ Template.form.events {
 		e.preventDefault()
 		data = $('#form').toObject()
 
+		if not data.name
+			alert "Name is required"
+			return
+
 		if Session.get('editing')
 			Meteor.call('update', Session.get('editing'), data)
 		else
@@ -103,6 +107,7 @@ Template.form.events {
 
 		Session.set 'editing', false
 		Session.set 'form_visibility', 'invisible'
+
 
 	'click #cancel': (e, template) ->
 		e.preventDefault()
@@ -122,6 +127,5 @@ formReset = (template) ->
 	Session.set 'form_visibility', 'invisible'
 
 Template.list.rendered = ->
-	$('.row').packery({
-		itemSelector: '.span3'
-	});
+	# should be okay.
+	new Packery('.row')
