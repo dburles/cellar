@@ -11,10 +11,11 @@ a {
 	z-index: 10;
 	height: 100%;
 	overflow: auto;
-	position: fixed;
+	/*position: fixed;
 	top: 0;
 	left: 0;
-	padding-top: 10px;
+	*/
+	/*padding-top: 10px;*/
 	background: url('/images/wood.jpg');
 	/*background-size: 100% 100%;*/
 }

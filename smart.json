@@ -5,6 +5,7 @@
     "accounting": {},
     "router": {},
     "fastclick": {},
-    "packery": {}
+    "packery": {},
+    "iron-router": {}
   }
 }

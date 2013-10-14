@@ -7,7 +7,8 @@
       "accounting": {},
       "router": {},
       "fastclick": {},
-      "packery": {}
+      "packery": {},
+      "iron-router": {}
     },
     "packages": {
       "accounts-ui-bootstrap-dropdown": {
@@ -39,6 +40,11 @@
         "git": "https://github.com/dburles/meteor-packery.git",
         "tag": "v0.1.0",
         "commit": "8e327fc10c5cbb0120b0df08677d8ca42f8cfbc7"
+      },
+      "iron-router": {
+        "git": "https://github.com/EventedMind/iron-router.git",
+        "tag": "v0.5.4",
+        "commit": "3e0e22ff85630b7503d0daa1538c6d90abb84020"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

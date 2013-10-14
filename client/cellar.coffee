@@ -2,42 +2,33 @@ Session.setDefault 'form_visibility', 'invisible'
 Session.setDefault 'editing', false
 Session.setDefault 'sort_field', 'ref'
 Session.setDefault 'sort_by', -1
-Session.setDefault 'archive', false
 
 Meteor.startup ->
 	$('body').spin('modal')
 	Session.set 'loaded', false
 
+# hmm :/
 globalSubscriptionHandles = []
 globalSubscriptionHandles.push Meteor.subscribe 'wineries'
 globalSubscriptionHandles.push Meteor.subscribe 'regions'
 globalSubscriptionHandles.push Meteor.subscribe 'varieties'
+globalSubscriptionHandles.push Meteor.subscribe 'wines', Meteor.userId()
 
 Deps.autorun ->
-	if Meteor.user()
-		globalSubscriptionHandles.push Meteor.subscribe('wines', Meteor.userId(), Session.get 'archive')
-	
 	isReady = globalSubscriptionHandles.every (handle) -> handle.ready()
 
 	if isReady and not Session.get 'loaded'
+		# ew
 		$('body').spin('modal')
 		Session.set 'loaded', true
 		# autocompletes
+		# argh
 		$('input[name="winery"]').typeahead { source: Wineries.find().map (winery) -> winery.name }
 		$('input[name="region"]').typeahead { source: Regions.find().map (region) -> region.name }
 		$('input[name="type"]').typeahead { source: Varieties.find().map (variety) -> variety.name }
 
-Template.nav.events {
-	'click #new': (e, template) ->
-		if Meteor.userId()
-			Session.set 'editing', false
-			Session.set 'form_visibility', 'visible'
-			$('#form')[0].reset()
-		else
-			alert("Please sign-in first!")
-}
 
-Template.nav.helpers {
+Template.nav.helpers
 	totalValue: ->
 		total = 0
 		Wines.find({ qty: { $gt: '0' }}).map (wine) ->
@@ -52,46 +43,46 @@ Template.nav.helpers {
 			if price != 'NaN' and price
 				total += price
 		accounting.formatMoney total
-}
 
-Template.list.helpers {
-	hasWines: ->
-		Wines.find().count() > 0
 
+Template.home.helpers
 	wines: ->
-		sort = {}
-		sort[Session.get('sort_field')] = Session.get('sort_by')
-		Wines.find {}, sort: sort
-}
+		Wines.find
+			qty:
+				$gt: "0"
+		,
+			sort:
+				ref: -1
 
-Template.list.events {
-	'click .edit': (e) ->
-		e.preventDefault()
-		wine = Wines.findOne({ _id: @_id })
+Template.archive.helpers
+	wines: ->
+		Wines.find
+			qty: '0'
+		,
+			sort:
+				ref: -1
 
-		Session.set 'editing', @_id
-		Session.set 'form_visibility', 'visible'
+Template.form.helpers
+	quantities: ->
+		_.range 25
+	# quantities: ->
+	# 	wine = Wines.findOne Session.get 'editing'
+	# 	obj = []
+	# 	_.each _.range(25), (n) ->
+	# 		o = {}
+	# 		o.val = n
+	# 		o.selected = true if n is wine.qty
+	# 		obj.push o
+	# 	obj
 
-		$('#form').populate(wine)
+Template.qty.helpers
+	selected: (value) ->
+		wine = Wines.findOne 
+		value is wine.qty
 
-	'click th a': (e) ->
-		e.preventDefault()
-		Session.set 'sort_field', e.target.id
 
-		if Session.get('sort_by') is 1
-			Session.set 'sort_by', -1
-		else
-			Session.set 'sort_by', 1
-}
 
-Template.form.helpers {
-	visibility: ->
-		Session.get('form_visibility')
-	editing: ->
-		Session.get('editing')
-}
-
-Template.form.events {
+Template.form.events
 	'click #save': (e, template) ->
 		e.preventDefault()
 		data = $('#form').toObject()
@@ -105,26 +96,11 @@ Template.form.events {
 		else
 			Meteor.call('create', data)
 
-		Session.set 'editing', false
-		Session.set 'form_visibility', 'invisible'
-
-
-	'click #cancel': (e, template) ->
-		e.preventDefault()
-		Session.set 'form_visibility', 'invisible'
-		formReset(template)
-
 	'click #delete': (e, template) ->
 		e.preventDefault()
 		if confirm("Are you sure?")
 			Meteor.call('remove', Session.get('editing'))
-			formReset(template)
-}
-
-formReset = (template) ->
-	Session.set 'editing', false
-	template.find('#form').reset()
-	Session.set 'form_visibility', 'invisible'
+			Session.set 'editing', false
 
 
 Template.list.rendered = ->

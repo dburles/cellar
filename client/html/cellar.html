@@ -8,21 +8,20 @@
 	<link rel="apple-touch-icon" sizes="144x144" href="/images/ios/touch-icon-ipad-retina.png" />
 </head>
 
-<body>
+<template name="layout">
 	{{> nav}}
 	<div class="container">
-		{{renderPage}}
+		{{yield}}
 	</div>
-</body>
+</template>
 
 <template name="home">
-	{{> form}}
-	{{> list}}
+	{{> list wines}}
 </template>
 
 <template name="archive">
-	{{> form}}
-	{{> list}}
+	<h1>ARCHIVE</h1>
+	{{> list wines}}
 </template>
 
 <template name="not_found">
@@ -35,14 +34,14 @@
 			<a class="brand">Wine Cellar</a>
 			<ul class="nav">
 				<li>
-					<a id="new" class="active"><i class="icon-glass icon-white"></i> Add a new wine</a>
+					<a href="{{pathFor 'add'}}"><i class="icon-glass icon-white"></i> Add a new wine</a>
 				</li>
 
 				<li>
-					<a href="{{homePath}}"><i class="icon-list icon-white"></i> Home</a>
+					<a href="{{pathFor 'home'}}"><i class="icon-list icon-white"></i> Home</a>
 				</li>
 				<li>
-					<a href="{{archivePath}}"><i class="icon-time icon-white"></i> Archive</a>
+					<a href="{{pathFor 'archive'}}"><i class="icon-time icon-white"></i> Archive</a>
 				</li>
 			</ul>
 			<ul class="nav pull-right">
@@ -60,160 +59,150 @@
 	</div>
 </template>
 
+<template name="edit">
+	{{> form}}
+</template>
+
+<template name="add">
+	{{> form}}
+</template>
+
+<template name="qty">
+	<option value="{{this}}" {{selected this}}>{{this}}</option>
+</template>
+
 <template name="form">
 	<form id="form" class="shadow form-horizontal {{visibility}}">
-		<fieldset>
-			<div class="control-group">
-				<!-- Text input-->
-				<label class="control-label" for="qty">Quantity</label>
-				<div class="controls">
-					<select name="qty" class="input-xlarge">
-						<option value="0">0</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						<option value="10">10</option>
-						<option value="11">11</option>
-						<option value="12">12</option>
-						<option value="13">13</option>
-						<option value="14">14</option>
-						<option value="15">15</option>
-						<option value="16">16</option>
-						<option value="17">17</option>
-						<option value="18">18</option>
-						<option value="19">19</option>
-						<option value="20">20</option>
-						<option value="21">21</option>
-						<option value="22">22</option>
-						<option value="23">23</option>
-						<option value="24">24</option>
-					</select>
-				</div>
-			</div>
-			<div class="control-group">
-				<!-- Text input-->
-				<label class="control-label" for="name">Name</label>
-				<div class="controls">
-					<input type="text" name="name" placeholder="" class="input-xlarge">
-				</div>
-			</div>
-			<div class="control-group">
-				<!-- Text input-->
-				<label class="control-label" for="type">Type</label>
-				<div class="controls">
-					<input type="text" name="type" placeholder="" class="input-xlarge">
-				</div>
-			</div>
-			<div class="control-group">
-				<!-- Text input-->
-				<label class="control-label" for="description">Description</label>
-				<div class="controls">
-					<input type="text" name="description" placeholder="" class="input-xlarge">
-				</div>
-			</div>
-			<div class="control-group">
-				<!-- Text input-->
-				<label class="control-label" for="winery">Winery</label>
-				<div class="controls">
-					<input type="text" name="winery" placeholder="" class="input-xlarge">
-				</div>
-			</div>
-			<div class="control-group">
-				<!-- Text input-->
-				<label class="control-label" for="region">Region</label>
-				<div class="controls">
-					<input type="text" name="region" placeholder="" class="input-xlarge">
-				</div>
-			</div>
-			<div class="control-group">
-				<!-- Text input-->
-				<label class="control-label" for="year">Year</label>
-				<div class="controls">
-					<input type="text" name="year" placeholder="" class="input-xlarge">
-				</div>
-			</div>
-			<div class="control-group">
-				<!-- Text input-->
-				<label class="control-label" for="drink_by">Drink By</label>
-				<div class="controls">
-					<input type="text" name="drink_by" placeholder="" class="input-xlarge">
-				</div>
-			</div>
-			<div class="control-group">
-				<!-- Text input-->
-				<label class="control-label" for="purchased">Purchased</label>
-				<div class="controls">
-					<input type="text" name="purchased" placeholder="" class="input-xlarge">
-				</div>
-			</div>
-			<div class="control-group">
-				<!-- Text input-->
-				<label class="control-label" for="price">Price</label>
-				<div class="controls">
-					<input type="text" name="price" placeholder="" class="input-xlarge">
-				</div>
-			</div>
-			<div class="control-group">
-				<!-- Select Basic -->
-				<label for="rating" class="control-label">Rating</label>
-				<div class="controls">
-					<select name="rating" class="input-xlarge">
-						<option>None</option>
-						<option value="10">10</option>
-						<option value="9">9</option>
-						<option value="8">8</option>
-						<option value="7">7</option>
-						<option value="6">6</option>
-						<option value="5">5</option>
-						<option value="4">4</option>
-						<option value="3">3</option>
-						<option value="2">2</option>
-						<option value="1">1</option>
-					</select>
-				</div>
-			</div>
-			<div class="control-group">
-				<!-- Textarea -->
-				<label for="noteS" class="control-label">Notes</label>
-				<div class="controls">
-					<div class="textarea-xlarge">
-						<textarea name="notes" type="" class=""></textarea>
+
+				<fieldset>
+					<div class="control-group">
+						<!-- Text input-->
+						<label class="control-label" for="qty">Quantity</label>
+						<div class="controls">
+							<select name="qty" class="input-xlarge">	
+								{{#each quantities}}
+									{{> qty this}}
+								{{/each}}
+							</select>
+						</div>
 					</div>
-				</div>
-			</div>
-			<div class="control-group">
-				<label class="control-label"></label>
-				<div class="controls">
-					<a id="save" class="btn btn-primary btn-large">Save</a>
-					<a id="cancel" class="btn right" style="float: right">Cancel</a>
-					{{#if editing}}
-						<a id="delete" class="btn btn-danger btn-mini right" style="float: right; margin-right: 5px"><i class="icon-remove icon-white"></i> Delete</a>
-					{{/if}}
-				</div>
-			</div>
-		</fieldset>
+					<div class="control-group">
+						<!-- Text input-->
+						<label class="control-label" for="name">Name</label>
+						<div class="controls">
+							<input value="{{name}}" type="text" name="name" placeholder="" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<!-- Text input-->
+						<label class="control-label" for="type">Type</label>
+						<div class="controls">
+							<input value="" type="text" name="type" placeholder="" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<!-- Text input-->
+						<label class="control-label" for="description">Description</label>
+						<div class="controls">
+							<input value="" type="text" name="description" placeholder="" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<!-- Text input-->
+						<label class="control-label" for="winery">Winery</label>
+						<div class="controls">
+							<input value="" type="text" name="winery" placeholder="" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<!-- Text input-->
+						<label class="control-label" for="region">Region</label>
+						<div class="controls">
+							<input value="" type="text" name="region" placeholder="" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<!-- Text input-->
+						<label class="control-label" for="year">Year</label>
+						<div class="controls">
+							<input value="" type="text" name="year" placeholder="" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<!-- Text input-->
+						<label class="control-label" for="drink_by">Drink By</label>
+						<div class="controls">
+							<input value="" type="text" name="drink_by" placeholder="" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<!-- Text input-->
+						<label class="control-label" for="purchased">Purchased</label>
+						<div class="controls">
+							<input value="" type="text" name="purchased" placeholder="" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<!-- Text input-->
+						<label class="control-label" for="price">Price</label>
+						<div class="controls">
+							<input value="" type="text" name="price" placeholder="" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<!-- Select Basic -->
+						<label for="rating" class="control-label">Rating</label>
+						<div class="controls">
+							<select name="rating" class="input-xlarge">
+								<option>None</option>
+								<option value="10">10</option>
+								<option value="9">9</option>
+								<option value="8">8</option>
+								<option value="7">7</option>
+								<option value="6">6</option>
+								<option value="5">5</option>
+								<option value="4">4</option>
+								<option value="3">3</option>
+								<option value="2">2</option>
+								<option value="1">1</option>
+							</select>
+						</div>
+					</div>
+					<div class="control-group">
+						<!-- Textarea -->
+						<label for="noteS" class="control-label">Notes</label>
+						<div class="controls">
+							<div class="textarea-xlarge">
+								<textarea name="notes" type="" class=""></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label"></label>
+						<div class="controls">
+							<a id="save" class="btn btn-primary btn-large">Save</a>
+							<a id="cancel" class="btn right" style="float: right">Cancel</a>
+							{{#if editing}}
+								<a id="delete" class="btn btn-danger btn-mini right" style="float: right; margin-right: 5px"><i class="icon-remove icon-white"></i> Delete</a>
+							{{/if}}
+						</div>
+					</div>
+				</fieldset>
+
 	</form>
 </template>
 
 <template name="list">
-	{{#if hasWines}}
-		<div class="row">
-		{{#each wines}}
+	<div class="row">
+		{{#each this}}
 			{{> item}}
 		{{/each}}
-		</div>
-	{{/if}}
+	</div>
 </template>
 
 <template name="item">
 	<div class="span3">
-		<h3><a href="" class="edit">{{year}} {{name}}</a><h3>
+		<h3><a href="{{pathFor 'edit'}}" class="edit">{{year}} {{name}}</a><h3>
 		<h4>{{description}} <small>{{type}}</small></h4>
 		<h5>{{region}}</h5>
 		<p>{{notes}}</p>
