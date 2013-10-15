@@ -24,8 +24,7 @@ requireLogin = ->
 
 @ArchiveController = RouteController.extend
 	before: requireLogin
-	onAfterRun: ->
-		Meteor.subscribe 'archive', Meteor.userId()
+
 
 @EditController = RouteController.extend
 	data: ->

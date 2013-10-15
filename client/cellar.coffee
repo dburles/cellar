@@ -15,6 +15,8 @@ globalSubscriptionHandles.push Meteor.subscribe 'varieties'
 
 Deps.autorun ->
 	Meteor.subscribe 'wines', Meteor.userId()
+	Meteor.subscribe 'archive', Meteor.userId()
+	
 	isReady = globalSubscriptionHandles.every (handle) -> handle.ready()
 
 	if isReady and not Session.get 'loaded'
@@ -23,9 +25,10 @@ Deps.autorun ->
 		Session.set 'loaded', true
 		# autocompletes
 		# argh
-		$('input[name="winery"]').typeahead { source: Wineries.find().map (winery) -> winery.name }
-		$('input[name="region"]').typeahead { source: Regions.find().map (region) -> region.name }
-		$('input[name="type"]').typeahead { source: Varieties.find().map (variety) -> variety.name }
+		Template.form.rendered = ->
+			$('input[name="winery"]').typeahead { source: Wineries.find().map (winery) -> winery.name }
+			$('input[name="region"]').typeahead { source: Regions.find().map (region) -> region.name }
+			$('input[name="type"]').typeahead { source: Varieties.find().map (variety) -> variety.name }
 
 
 Template.nav.helpers
