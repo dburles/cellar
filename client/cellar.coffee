@@ -12,9 +12,9 @@ globalSubscriptionHandles = []
 globalSubscriptionHandles.push Meteor.subscribe 'wineries'
 globalSubscriptionHandles.push Meteor.subscribe 'regions'
 globalSubscriptionHandles.push Meteor.subscribe 'varieties'
-globalSubscriptionHandles.push Meteor.subscribe 'wines', Meteor.userId()
 
 Deps.autorun ->
+	Meteor.subscribe 'wines', Meteor.userId()
 	isReady = globalSubscriptionHandles.every (handle) -> handle.ready()
 
 	if isReady and not Session.get 'loaded'
@@ -49,7 +49,7 @@ Template.home.helpers
 	wines: ->
 		Wines.find
 			qty:
-				$gt: "0"
+				$gt: '0'
 		,
 			sort:
 				ref: -1
@@ -63,23 +63,21 @@ Template.archive.helpers
 				ref: -1
 
 Template.form.helpers
-	quantities: ->
-		_.range 25
-	# quantities: ->
-	# 	wine = Wines.findOne Session.get 'editing'
-	# 	obj = []
-	# 	_.each _.range(25), (n) ->
-	# 		o = {}
-	# 		o.val = n
-	# 		o.selected = true if n is wine.qty
-	# 		obj.push o
-	# 	obj
+	selectOptionsQty: ->
+		name: 'qty'
+		value: @qty
+		options: _.map _.range(25), (qty) -> name: qty, value: qty
+	selectOptionsRating: ->
+		name: 'rating'
+		value: @rating
+		options: [{ name: 'None', value: 'None' }].concat _.map _.range(1, 11).reverse(), (rating) -> name: rating, value: rating
 
-Template.qty.helpers
-	selected: (value) ->
-		wine = Wines.findOne 
-		value is wine.qty
-
+Template.select.helpers
+	decoratedOptions: ->
+		self = this
+		_.map self.options, (option) ->
+			option.selected = option.value is parseInt self.value
+			option
 
 
 Template.form.events
@@ -91,16 +89,22 @@ Template.form.events
 			alert "Name is required"
 			return
 
-		if Session.get('editing')
-			Meteor.call('update', Session.get('editing'), data)
+		if @._id
+			Meteor.call('update', @._id, data)
 		else
 			Meteor.call('create', data)
+
+		Router.go 'home'
 
 	'click #delete': (e, template) ->
 		e.preventDefault()
 		if confirm("Are you sure?")
-			Meteor.call('remove', Session.get('editing'))
-			Session.set 'editing', false
+			Meteor.call('remove', @._id)
+			Router.go 'home'
+
+	'click #cancel': (e, template) ->
+		e.preventDefault()
+		Router.go 'home'
 
 
 Template.list.rendered = ->

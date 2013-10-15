@@ -10,18 +10,20 @@
 
 <template name="layout">
 	{{> nav}}
-	<div class="container">
-		{{yield}}
-	</div>
+	{{yield}}
 </template>
 
 <template name="home">
-	{{> list wines}}
+	<div class="container">
+		{{> list wines}}
+	</div>
 </template>
 
 <template name="archive">
-	<h1>ARCHIVE</h1>
-	{{> list wines}}
+	<div class="container">
+		<h1>ARCHIVE</h1>
+		{{> list wines}}
+	</div>
 </template>
 
 <template name="not_found">
@@ -31,26 +33,29 @@
 <template name="nav">
 	<div class="navbar">
 		<div class="navbar-inner">
-			<a class="brand">Wine Cellar</a>
-			<ul class="nav">
-				<li>
-					<a href="{{pathFor 'add'}}"><i class="icon-glass icon-white"></i> Add a new wine</a>
-				</li>
-
-				<li>
-					<a href="{{pathFor 'home'}}"><i class="icon-list icon-white"></i> Home</a>
-				</li>
-				<li>
-					<a href="{{pathFor 'archive'}}"><i class="icon-time icon-white"></i> Archive</a>
-				</li>
-			</ul>
+			<a class="brand" href="{{pathFor 'home'}}">Wine Cellar</a>
+			{{#if currentUser}}
+				<ul class="nav">
+					<li>
+						<a href="{{pathFor 'add'}}"><i class="icon-glass icon-white"></i> Add a new wine</a>
+					</li>
+					<li>
+						<a href="{{pathFor 'home'}}"><i class="icon-list icon-white"></i> Home</a>
+					</li>
+					<li>
+						<a href="{{pathFor 'archive'}}"><i class="icon-time icon-white"></i> Archive</a>
+					</li>
+				</ul>
+			{{/if}}
 			<ul class="nav pull-right">
-				<li>
-					<a>{{totalWines}}</a>
-				</li>
-				<li>
-					<a>{{totalValue}}</a>
-				</li>
+				{{#if currentUser}}
+					<li>
+						<a>{{totalWines}}</a>
+					</li>
+					<li>
+						<a>{{totalValue}}</a>
+					</li>
+				{{/if}}
 				<li>
 					{{loginButtons}}
 				</li>
@@ -67,23 +72,34 @@
 	{{> form}}
 </template>
 
-<template name="qty">
-	<option value="{{this}}" {{selected this}}>{{this}}</option>
+<template name="select">
+	<select name="{{name}}" class="input-xlarge">	
+		{{#each decoratedOptions}}
+			<option value="{{value}}" {{#if selected}}selected{{/if}}>{{name}}</option>
+		{{/each}}
+	</select>
 </template>
 
 <template name="form">
-	<form id="form" class="shadow form-horizontal {{visibility}}">
-
+	<form id="form" class="form-horizontal {{visibility}}">
+		<div class="row">
+			<div class="span9">
 				<fieldset>
+					<div class="control-group">
+						<label for="" class="control-label">&nbsp;</label>
+						<div class="controls">
+							{{#unless _id}}
+								<h1>NEW</h1>
+							{{else}}
+								<h1>EDIT</h1>
+							{{/unless}}
+						</div>
+					</div>
 					<div class="control-group">
 						<!-- Text input-->
 						<label class="control-label" for="qty">Quantity</label>
 						<div class="controls">
-							<select name="qty" class="input-xlarge">	
-								{{#each quantities}}
-									{{> qty this}}
-								{{/each}}
-							</select>
+							{{> select selectOptionsQty}}
 						</div>
 					</div>
 					<div class="control-group">
@@ -97,75 +113,63 @@
 						<!-- Text input-->
 						<label class="control-label" for="type">Type</label>
 						<div class="controls">
-							<input value="" type="text" name="type" placeholder="" class="input-xlarge">
+							<input value="{{type}}" type="text" name="type" placeholder="" class="input-xlarge">
 						</div>
 					</div>
 					<div class="control-group">
 						<!-- Text input-->
 						<label class="control-label" for="description">Description</label>
 						<div class="controls">
-							<input value="" type="text" name="description" placeholder="" class="input-xlarge">
+							<input value="{{description}}" type="text" name="description" placeholder="" class="input-xlarge">
 						</div>
 					</div>
 					<div class="control-group">
 						<!-- Text input-->
 						<label class="control-label" for="winery">Winery</label>
 						<div class="controls">
-							<input value="" type="text" name="winery" placeholder="" class="input-xlarge">
+							<input value="{{winery}}" type="text" name="winery" placeholder="" class="input-xlarge">
 						</div>
 					</div>
 					<div class="control-group">
 						<!-- Text input-->
 						<label class="control-label" for="region">Region</label>
 						<div class="controls">
-							<input value="" type="text" name="region" placeholder="" class="input-xlarge">
+							<input value="{{region}}" type="text" name="region" placeholder="" class="input-xlarge">
 						</div>
 					</div>
 					<div class="control-group">
 						<!-- Text input-->
 						<label class="control-label" for="year">Year</label>
 						<div class="controls">
-							<input value="" type="text" name="year" placeholder="" class="input-xlarge">
+							<input value="{{year}}" type="text" name="year" placeholder="" class="input-xlarge">
 						</div>
 					</div>
 					<div class="control-group">
 						<!-- Text input-->
 						<label class="control-label" for="drink_by">Drink By</label>
 						<div class="controls">
-							<input value="" type="text" name="drink_by" placeholder="" class="input-xlarge">
+							<input value="{{drink_by}}" type="text" name="drink_by" placeholder="" class="input-xlarge">
 						</div>
 					</div>
 					<div class="control-group">
 						<!-- Text input-->
 						<label class="control-label" for="purchased">Purchased</label>
 						<div class="controls">
-							<input value="" type="text" name="purchased" placeholder="" class="input-xlarge">
+							<input value="{{purchased}}" type="text" name="purchased" placeholder="" class="input-xlarge">
 						</div>
 					</div>
 					<div class="control-group">
 						<!-- Text input-->
 						<label class="control-label" for="price">Price</label>
 						<div class="controls">
-							<input value="" type="text" name="price" placeholder="" class="input-xlarge">
+							<input value="{{price}}" type="text" name="price" placeholder="" class="input-xlarge">
 						</div>
 					</div>
 					<div class="control-group">
 						<!-- Select Basic -->
 						<label for="rating" class="control-label">Rating</label>
 						<div class="controls">
-							<select name="rating" class="input-xlarge">
-								<option>None</option>
-								<option value="10">10</option>
-								<option value="9">9</option>
-								<option value="8">8</option>
-								<option value="7">7</option>
-								<option value="6">6</option>
-								<option value="5">5</option>
-								<option value="4">4</option>
-								<option value="3">3</option>
-								<option value="2">2</option>
-								<option value="1">1</option>
-							</select>
+							{{> select selectOptionsRating}}
 						</div>
 					</div>
 					<div class="control-group">
@@ -173,7 +177,7 @@
 						<label for="noteS" class="control-label">Notes</label>
 						<div class="controls">
 							<div class="textarea-xlarge">
-								<textarea name="notes" type="" class=""></textarea>
+								<textarea name="notes" type="" class="">{{notes}}</textarea>
 							</div>
 						</div>
 					</div>
@@ -181,14 +185,15 @@
 						<label class="control-label"></label>
 						<div class="controls">
 							<a id="save" class="btn btn-primary btn-large">Save</a>
-							<a id="cancel" class="btn right" style="float: right">Cancel</a>
-							{{#if editing}}
+							<a id="cancel" class="btn right btn-large" style="float: right">Cancel</a>
+							{{#if _id}}
 								<a id="delete" class="btn btn-danger btn-mini right" style="float: right; margin-right: 5px"><i class="icon-remove icon-white"></i> Delete</a>
 							{{/if}}
 						</div>
 					</div>
 				</fieldset>
-
+			</div>
+		</div>
 	</form>
 </template>
 

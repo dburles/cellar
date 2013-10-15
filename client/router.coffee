@@ -1,31 +1,33 @@
 Router.configure
-  layout: 'layout'
+	layout: 'layout'
 
 Router.map ->
-  @.route 'home',
-  	path: '/'
-  	controller: 'HomeController'
-  @.route 'archive',
-  	path: '/archive'
-  	controller: 'ArchiveController'
-  @.route 'edit',
-  	path: '/edit/:_id'
-  	controller: 'EditController'
-  @.route 'add',
-  	path: '/add'
-  	controller: 'EditController'
-  return
+	@.route 'home',
+		path: '/'
+	@.route 'archive',
+		path: '/archive'
+		controller: 'ArchiveController'
+	@.route 'add',
+		path: '/add'
+		controller: 'AddController'
+	@.route 'edit',
+		path: '/edit/:_id'
+		controller: 'EditController'
+	return
 
-@HomeController = RouteController.extend
-	onAfterRun: ->
-		return
+requireLogin = ->
+	if not Meteor.user()
+		Router.go 'home'
+
+@AddController = RouteController.extend
+	before: requireLogin
 
 @ArchiveController = RouteController.extend
+	before: requireLogin
 	onAfterRun: ->
 		Meteor.subscribe 'archive', Meteor.userId()
 
 @EditController = RouteController.extend
-	onAfterRun: ->
-		Session.set 'editing', @.params._id
 	data: ->
 		Wines.findOne @.params._id
+
