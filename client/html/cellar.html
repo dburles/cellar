@@ -116,6 +116,14 @@
 							<input value="{{type}}" type="text" name="type" placeholder="" class="input-xlarge">
 						</div>
 					</div>
+					{{#each varieties}}
+					<div class="control-group">
+						<label for="" class="control-label">&nbsp;</label>
+						<div class="controls autocomplete-type">
+							<a class="ac" href="">{{name}}</a>
+						</div>
+					</div>
+					{{/each}}
 					<div class="control-group">
 						<!-- Text input-->
 						<label class="control-label" for="description">Description</label>
@@ -130,6 +138,14 @@
 							<input value="{{winery}}" type="text" name="winery" placeholder="" class="input-xlarge">
 						</div>
 					</div>
+					{{#each wineries}}
+					<div class="control-group">
+						<label for="" class="control-label">&nbsp;</label>
+						<div class="controls autocomplete-winery">
+							<a class="ac" href="">{{name}}</a>
+						</div>
+					</div>
+					{{/each}}
 					<div class="control-group">
 						<!-- Text input-->
 						<label class="control-label" for="region">Region</label>
@@ -137,6 +153,14 @@
 							<input value="{{region}}" type="text" name="region" placeholder="" class="input-xlarge">
 						</div>
 					</div>
+					{{#each regions}}
+					<div class="control-group">
+						<label for="" class="control-label">&nbsp;</label>
+						<div class="controls autocomplete-region">
+							<a class="ac" href="">{{name}}</a>
+						</div>
+					</div>
+					{{/each}}
 					<div class="control-group">
 						<!-- Text input-->
 						<label class="control-label" for="year">Year</label>

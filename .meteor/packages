@@ -14,6 +14,5 @@ underscore
 standard-app-packages
 accounting
 fastclick
-page-js-ie-support
 packery
 iron-router

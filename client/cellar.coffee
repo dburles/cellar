@@ -1,35 +1,7 @@
-Session.setDefault 'form_visibility', 'invisible'
-Session.setDefault 'editing', false
-Session.setDefault 'sort_field', 'ref'
-Session.setDefault 'sort_by', -1
-
-Meteor.startup ->
-	$('body').spin('modal')
-	Session.set 'loaded', false
-
-# hmm :/
-globalSubscriptionHandles = []
-globalSubscriptionHandles.push Meteor.subscribe 'wineries'
-globalSubscriptionHandles.push Meteor.subscribe 'regions'
-globalSubscriptionHandles.push Meteor.subscribe 'varieties'
-
 Deps.autorun ->
-	Meteor.subscribe 'wines', Meteor.userId()
-	Meteor.subscribe 'archive', Meteor.userId()
-	
-	isReady = globalSubscriptionHandles.every (handle) -> handle.ready()
-
-	if isReady and not Session.get 'loaded'
-		# ew
-		$('body').spin('modal')
-		Session.set 'loaded', true
-		# autocompletes
-		# argh
-		Template.form.rendered = ->
-			$('input[name="winery"]').typeahead { source: Wineries.find().map (winery) -> winery.name }
-			$('input[name="region"]').typeahead { source: Regions.find().map (region) -> region.name }
-			$('input[name="type"]').typeahead { source: Varieties.find().map (variety) -> variety.name }
-
+	Meteor.subscribe 'wineries', Session.get 'winery'
+	Meteor.subscribe 'regions', Session.get 'region'
+	Meteor.subscribe 'varieties', Session.get 'variety'
 
 Template.nav.helpers
 	totalValue: ->
@@ -46,7 +18,6 @@ Template.nav.helpers
 			if price != 'NaN' and price
 				total += price
 		accounting.formatMoney total
-
 
 Template.home.helpers
 	wines: ->
@@ -74,6 +45,12 @@ Template.form.helpers
 		name: 'rating'
 		value: @rating
 		options: [{ name: 'None', value: 'None' }].concat _.map _.range(1, 11).reverse(), (rating) -> name: rating, value: rating
+	varieties: ->
+		Varieties.find {}, { sort: name }
+	wineries: ->
+		Wineries.find {}, { sort: name }
+	regions: ->
+		Regions.find {}, { sort: name }
 
 Template.select.helpers
 	decoratedOptions: ->
@@ -82,8 +59,37 @@ Template.select.helpers
 			option.selected = option.value is parseInt self.value
 			option
 
-
 Template.form.events
+	'keyup input[name="type"]': (e, template) ->
+		if e.target.value.length > 1
+			Session.set 'variety', e.target.value 
+		else
+			Session.set 'variety', ''
+
+	'keyup input[name="winery"]': (e, template) ->
+		if e.target.value.length > 1
+			Session.set 'winery', e.target.value 
+		else
+			Session.set 'winery', ''
+
+	'keyup input[name="region"]': (e, template) ->
+		if e.target.value.length > 1
+			Session.set 'region', e.target.value 
+		else
+			Session.set 'region', ''
+
+	'click .autocomplete-type a': (e) ->
+		Session.set 'variety', ''
+		$('input[name="type"]').val e.target.text
+
+	'click .autocomplete-winery a': (e) ->
+		Session.set 'winery', ''
+		$('input[name="winery"]').val e.target.text
+
+	'click .autocomplete-region a': (e) ->
+		Session.set 'region', ''
+		$('input[name="region"]').val e.target.text
+
 	'click #save': (e, template) ->
 		e.preventDefault()
 		data = $('#form').toObject()
@@ -108,6 +114,7 @@ Template.form.events
 	'click #cancel': (e, template) ->
 		e.preventDefault()
 		Router.go 'home'
+
 
 
 Template.list.rendered = ->

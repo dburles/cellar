@@ -3,7 +3,7 @@
 @Regions = new Meteor.Collection 'regions'
 @Varieties = new Meteor.Collection 'varieties'
 
-Wines.allow {
+Wines.allow
 	insert: (userId, doc) ->
 		userId && doc.owner == userId
 	update: (userId, doc) ->
@@ -11,9 +11,8 @@ Wines.allow {
 	remove: (userId, doc) ->
 		userId == doc.owner
 	fetch: ['owner']
-}
 
-Meteor.methods {
+Meteor.methods
 	'create': (data) ->
 		data.added = (new Date).getTime()
 		data.modified = (new Date).getTime()
@@ -29,4 +28,3 @@ Meteor.methods {
 		Wines.update(wineId, { $set: data })
 	'remove': (wineId) ->
 		Wines.remove(wineId)
-}

@@ -1,17 +1,27 @@
 Router.configure
-	layout: 'layout'
+	layoutTemplate: 'layout'
 
 Router.map ->
 	@.route 'home',
 		path: '/'
+		waitOn: ->
+			Meteor.subscribe 'wines', Meteor.userId()
+		after: ->
+			Session.set 'loaded', true
 	@.route 'archive',
 		path: '/archive'
+		waitOn: ->
+			Meteor.subscribe 'archive', Meteor.userId()
+		after: ->
+			Session.set 'loaded', true
 		controller: 'ArchiveController'
 	@.route 'add',
 		path: '/add'
 		controller: 'AddController'
 	@.route 'edit',
 		path: '/edit/:_id'
+		waitOn: ->
+			Meteor.subscribe 'wine', @params._id
 		controller: 'EditController'
 	return
 

@@ -1,23 +1,25 @@
-Meteor.publish 'wines', (owner) ->
+Meteor.publish 'wines', ->
   Wines.find
     qty:
       $gt: '0'
-    owner: owner
+    owner: this.userId
 
-Meteor.publish 'archive', (owner) ->
+Meteor.publish 'archive', ->
   Wines.find 
     qty: '0'
-    owner: owner
+    owner: this.userId
+
+Meteor.publish 'wine', (id) ->
+  Wines.find
+    _id: id
+    owner: this.userId
 
 
-Meteor.publish 'wineries', ->
-	Wineries.find()
+Meteor.publish 'wineries', (search) ->
+	Wineries.find({ name: { $regex: '^' + search, $options: 'i' }}, { limit: 10 }) if search
 
-Meteor.publish 'regions', ->
-  Regions.find()
+Meteor.publish 'regions', (search) ->
+  Regions.find({ name: { $regex: '^' + search, $options: 'i' }}, { limit: 10 }) if search
 
-Meteor.publish 'varieties', ->
-  Varieties.find()
-
-# Meteor.publish 'varieties', search ->
-#   Varieties.find({ name: { $regex: search, $options: 'i' }})
+Meteor.publish 'varieties', (search) ->
+  Varieties.find({ name: { $regex: '^' + search, $options: 'i' }}, { limit: 10 }) if search
