@@ -115,7 +115,9 @@ Template.form.events
 		e.preventDefault()
 		Router.go 'home'
 
-
+Template.form.rendered = ->
+	# we really want to be at the top of the form when we load it
+	window.scrollTo()
 
 Template.list.rendered = ->
 	# should be okay.
