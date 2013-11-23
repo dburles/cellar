@@ -1,12 +1,12 @@
 Meteor.publish 'wines', ->
   Wines.find
     qty:
-      $gt: '0'
+      $gt: 0
     owner: this.userId
 
 Meteor.publish 'archive', ->
   Wines.find 
-    qty: '0'
+    qty: 0
     owner: this.userId
 
 Meteor.publish 'wine', (id) ->

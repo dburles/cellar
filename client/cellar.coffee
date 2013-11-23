@@ -6,14 +6,14 @@ Deps.autorun ->
 Template.nav.helpers
 	totalValue: ->
 		total = 0
-		Wines.find({ qty: { $gt: '0' }}).map (wine) ->
+		Wines.find({ qty: { $gt: 0 }}).map (wine) ->
 			qty = parseInt(wine.qty)
 			if qty != 'NaN' and qty
 				total += qty
 		total
 	totalWines: ->
 		total = 0
-		Wines.find({ qty: { $gt: '0' }}).map (wine) ->
+		Wines.find({ qty: { $gt: 0 }}).map (wine) ->
 			price = parseInt(wine.price) * wine.qty
 			if price != 'NaN' and price
 				total += price
@@ -23,7 +23,7 @@ Template.home.helpers
 	wines: ->
 		Wines.find
 			qty:
-				$gt: '0'
+				$gt: 0
 		,
 			sort:
 				ref: -1
@@ -31,7 +31,7 @@ Template.home.helpers
 Template.archive.helpers
 	wines: ->
 		Wines.find
-			qty: '0'
+			qty: 0
 		,
 			sort:
 				ref: -1
