@@ -77,3 +77,12 @@ h4 small {
 	background: #ddd;
 	color: #333;
 }
+
+.ref {
+	padding: 5px;
+	font-weight: bold;
+	font-size: 21px;
+	color: #ED143D;
+	background: #FFF;
+	margin: 0;
+}
