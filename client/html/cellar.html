@@ -10,7 +10,9 @@
 
 <template name="layout">
 	{{> nav}}
-	{{yield}}
+	{{#if currentUser}}
+		{{yield}}
+	{{/if}}
 </template>
 
 <template name="home">
@@ -222,10 +224,20 @@
 </template>
 
 <template name="list">
+	{{> search}}
 	<div class="row">
 		{{#each this}}
 			{{> item}}
 		{{/each}}
+	</div>
+</template>
+
+<template name="search">
+	<div id="search-container" class="container">
+		<input type="text" name="search" id="search" value="{{search}}" placeholder="Search..">
+		{{#if hasSearch}}
+			<span class="clear">Clear</span>
+		{{/if}}
 	</div>
 </template>
 
@@ -238,6 +250,7 @@
 		<span class="badge ref">#{{ref}}</span>
 		<span class="badge">x {{qty}}</span>
 		<span class="badge">${{price}}</span>
+		<span class="badge">{{rating}}/10</span>
 	</div>
 </template>
 
