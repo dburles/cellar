@@ -250,7 +250,9 @@
 		<span class="badge ref">#{{ref}}</span>
 		<span class="badge">x {{qty}}</span>
 		<span class="badge">${{price}}</span>
-		<span class="badge">{{rating}}/10</span>
+		{{#if rating}}
+			<span class="badge">{{rating}}/10</span>
+		{{/if}}
 	</div>
 </template>
 
