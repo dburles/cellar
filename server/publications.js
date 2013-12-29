@@ -14,9 +14,10 @@ Meteor.publish('archive', function() {
   });
 });
 
-Meteor.publish('wine', function(id) {
+Meteor.publish('wine', function(_id) {
+  check(_id, String);
   return Wines.find({
-    _id: id,
+    _id: _id,
     owner: this.userId
   });
 });
