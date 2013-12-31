@@ -134,8 +134,15 @@
 					</div>
 					{{/each}}
 					<div class="control-group">
+ 						<!-- Text input-->
+						<label class="control-label" for="description">Description</label>
+						<div class="controls">
+							<input value="{{description}}" type="text" name="description" placeholder="" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
 						<!-- Text input-->
-						<label class="control-label" for="type">Type</label>
+						<label class="control-label" for="type">Variety</label>
 						<div class="controls">
 							<input value="{{type}}" type="text" name="type" placeholder="" class="input-xlarge">
 						</div>
@@ -236,8 +243,6 @@
 
 <template name="item">
 	<div class="span3">
-		
-
 		<h2><span class="badge ref">#{{ref}}</span> <a href="{{pathFor 'edit'}}" class="edit">{{year}} {{winery}}</a><h2>
 		<h3>{{type}}</h3>
 		<h4>{{region}}</h4>

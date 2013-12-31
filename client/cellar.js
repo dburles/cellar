@@ -179,8 +179,8 @@ Template.form.events({
   'click #save': function(e, template) {
     e.preventDefault();
     var data = $('#form').toObject();
-    if (!data.name) {
-      alert("Name is required");
+    if (!data.year) {
+      alert("Year is required");
       return;
     }
     if (this._id) {
