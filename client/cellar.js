@@ -4,6 +4,13 @@ Deps.autorun(function() {
   Meteor.subscribe('varieties', Session.get('variety'));
 });
 
+// FIX this
+Meteor.startup(function() {
+  Meteor.subscribe('wines', function() {
+    Session.set('loaded', true);
+  });
+});
+
 Template.nav.helpers({
   totalValue: function() {
     var total = 0;
@@ -54,15 +61,21 @@ Template.search.helpers({
 });
 
 var winesCursor = function(query) {
-  if (Session.get('search')) {
-    var regexp = { $regex: Session.get('search'), $options: 'i' };
-    query.$or = [
-      { name: regexp },
-      { winery: regexp },
-      { region: regexp },
-      { year: regexp },
-      { type: regexp }
-    ];
+  var search = Session.get('search');
+  if (search) {
+    if (search[0] === '#') {
+      query.ref = parseInt(search.substr(1));
+    } else {
+      var regexp = { $regex: search, $options: 'i' };
+      query.$or = [
+        { ref: regexp },
+        { name: regexp },
+        { winery: regexp },
+        { region: regexp },
+        { year: regexp },
+        { type: regexp }
+      ];
+    }
   }
   return Wines.find(query, { sort: { ref: -1 }});
 };

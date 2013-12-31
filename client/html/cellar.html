@@ -106,31 +106,16 @@
 					</div>
 					<div class="control-group">
 						<!-- Text input-->
+						<label class="control-label" for="year">Year</label>
+						<div class="controls">
+							<input value="{{year}}" type="text" name="year" placeholder="" class="input-xlarge">
+						</div>
+					</div>
+					<div class="control-group">
+						<!-- Text input-->
 						<label class="control-label" for="name">Name</label>
 						<div class="controls">
 							<input value="{{name}}" type="text" name="name" placeholder="" class="input-xlarge">
-						</div>
-					</div>
-					<div class="control-group">
-						<!-- Text input-->
-						<label class="control-label" for="type">Type</label>
-						<div class="controls">
-							<input value="{{type}}" type="text" name="type" placeholder="" class="input-xlarge">
-						</div>
-					</div>
-					{{#each varieties}}
-					<div class="control-group">
-						<label for="" class="control-label">&nbsp;</label>
-						<div class="controls autocomplete-type">
-							<a class="ac" href="">{{name}}</a>
-						</div>
-					</div>
-					{{/each}}
-					<div class="control-group">
-						<!-- Text input-->
-						<label class="control-label" for="description">Description</label>
-						<div class="controls">
-							<input value="{{description}}" type="text" name="description" placeholder="" class="input-xlarge">
 						</div>
 					</div>
 					<div class="control-group">
@@ -150,6 +135,21 @@
 					{{/each}}
 					<div class="control-group">
 						<!-- Text input-->
+						<label class="control-label" for="type">Type</label>
+						<div class="controls">
+							<input value="{{type}}" type="text" name="type" placeholder="" class="input-xlarge">
+						</div>
+					</div>
+					{{#each varieties}}
+					<div class="control-group">
+						<label for="" class="control-label">&nbsp;</label>
+						<div class="controls autocomplete-type">
+							<a class="ac" href="">{{name}}</a>
+						</div>
+					</div>
+					{{/each}}
+					<div class="control-group">
+						<!-- Text input-->
 						<label class="control-label" for="region">Region</label>
 						<div class="controls">
 							<input value="{{region}}" type="text" name="region" placeholder="" class="input-xlarge">
@@ -163,13 +163,6 @@
 						</div>
 					</div>
 					{{/each}}
-					<div class="control-group">
-						<!-- Text input-->
-						<label class="control-label" for="year">Year</label>
-						<div class="controls">
-							<input value="{{year}}" type="text" name="year" placeholder="" class="input-xlarge">
-						</div>
-					</div>
 					<div class="control-group">
 						<!-- Text input-->
 						<label class="control-label" for="drink_by">Drink By</label>
@@ -243,13 +236,18 @@
 
 <template name="item">
 	<div class="span3">
-		<h3><a href="{{pathFor 'edit'}}" class="edit">{{year}} {{name}}</a><h3>
-		<h4>{{description}} <small>{{type}}</small></h4>
-		<h5>{{region}}</h5>
+		
+
+		<h2><span class="badge ref">#{{ref}}</span> <a href="{{pathFor 'edit'}}" class="edit">{{year}} {{winery}}</a><h2>
+		<h3>{{type}}</h3>
+		<h4>{{region}}</h4>
 		<p>{{notes}}</p>
-		<span class="badge ref">#{{ref}}</span>
+		<p>Drink by {{drink_by}}</p>
+		
 		<span class="badge">x {{qty}}</span>
-		<span class="badge">${{price}}</span>
+		{{#if price}}
+			<span class="badge">${{price}}</span>
+		{{/if}}
 		{{#if rating}}
 			<span class="badge">{{rating}}/10</span>
 		{{/if}}

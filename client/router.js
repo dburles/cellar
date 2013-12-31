@@ -10,13 +10,13 @@ Router.configure({
 
 Router.map(function() {
   this.route('home', {
-    path: '/',
-    waitOn: function() {
-      return Meteor.subscribe('wines');
-    },
-    after: function() {
-      return Session.set('loaded', true);
-    }
+    path: '/'
+    // waitOn: function() {
+    //   return Meteor.subscribe('wines');
+    // },
+    // after: function() {
+    //   return Session.set('loaded', true);
+    // }
   });
   this.route('archive', {
     before: requireLogin,
