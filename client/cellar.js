@@ -68,12 +68,11 @@ var winesCursor = function(query) {
     } else {
       var regexp = { $regex: search, $options: 'i' };
       query.$or = [
-        { ref: regexp },
+        { year: regexp },
         { name: regexp },
         { winery: regexp },
-        { region: regexp },
-        { year: regexp },
-        { type: regexp }
+        { type: regexp },
+        { region: regexp }
       ];
     }
   }
