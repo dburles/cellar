@@ -1,4 +1,4 @@
-Cellar - Version 1.6
+Cellar - Version 1.8
 ======
 
 A wine cellar app made with Meteor
