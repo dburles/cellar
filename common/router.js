@@ -19,10 +19,10 @@ Router.map(function() {
     // }
   });
   this.route('archive', {
-    before: requireLogin,
     path: '/archive',
-    waitOn: function() {
-      return Meteor.subscribe('archive');
+    before: function() {
+      requireLogin();
+      return this.subscribe('archive');
     },
     after: function() {
       return Session.set('loaded', true);
@@ -33,10 +33,10 @@ Router.map(function() {
     path: '/add'
   });
   this.route('edit', {
-    before: requireLogin,
     path: '/edit/:_id',
-    waitOn: function() {
-      return Meteor.subscribe('wine', this.params._id);
+    before: function() {
+      requireLogin();
+      return this.subscribe('wine', this.params._id);
     },
     data: function() {
       return Wines.findOne(this.params._id);
