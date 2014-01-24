@@ -23,7 +23,7 @@ View.set('home');
 
 Template.application.helpers({
   view: function() {
-    return Session.get('view') && Template[Session.get('view')];
+    return Session.get('view') && Template[Session.get('view')]();
   },
   modal: function() {
     return Session.get('promptModal');

@@ -17,7 +17,7 @@
     {{> nav}}
     
     <div class="container">
-      {{> view data}}
+      {{{view data}}}
     </div>
   {{else}}
     {{> promptModal}}
@@ -83,7 +83,7 @@
           </li>
         {{/if}}
         <li>
-          {{> loginButtons}}
+          {{loginButtons}}
         </li>
       </ul>
     </div>
@@ -226,7 +226,7 @@
           </div>
           <div class="control-group">
             <!-- Textarea -->
-            <label for="noteS" class="control-label">Notes</label>
+            <label for="notes" class="control-label">Notes</label>
             <div class="controls">
               <div class="textarea-xlarge">
                 <textarea name="notes" type="" class="">{{notes}}</textarea>
