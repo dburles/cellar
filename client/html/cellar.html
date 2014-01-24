@@ -10,22 +10,23 @@
 
 <template name="layout">
   {{> nav}}
-  {{#if currentUser}}
+  
+  <div class="container">
     {{yield}}
-  {{/if}}
+  </div>
+</template>
+
+<template name="signIn">
+  <h2>Please sign in to access your wine cellar.</h2>
 </template>
 
 <template name="home">
-  <div class="container">
-    {{> list wines}}
-  </div>
+  {{> list wines}}
 </template>
 
 <template name="archive">
-  <div class="container">
-    <h1>ARCHIVE</h1>
-    {{> list wines}}
-  </div>
+  <h1>ARCHIVE</h1>
+  {{> list wines}}
 </template>
 
 <template name="not_found">

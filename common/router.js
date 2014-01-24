@@ -1,6 +1,6 @@
 var requireLogin = function() {
   if (!Meteor.user()) {
-    return Router.go('home');
+    return Router.go('signIn');
   }
 };
 
@@ -8,7 +8,18 @@ Router.configure({
   layoutTemplate: 'layout'
 });
 
+Router.before(requireLogin, { except: [
+  'signIn'
+]});
+
 Router.map(function() {
+  this.route('signIn', {
+    before: function() {
+      if (Meteor.user())
+        Router.go('home');
+    },
+    path: '/signIn'
+  });
   this.route('home', {
     path: '/'
     // waitOn: function() {
@@ -21,7 +32,6 @@ Router.map(function() {
   this.route('archive', {
     path: '/archive',
     before: function() {
-      requireLogin();
       return this.subscribe('archive');
     },
     after: function() {
@@ -29,13 +39,11 @@ Router.map(function() {
     }
   });
   this.route('add', {
-    before: requireLogin,
     path: '/add'
   });
   this.route('edit', {
     path: '/edit/:_id',
     before: function() {
-      requireLogin();
       return this.subscribe('wine', this.params._id);
     },
     data: function() {
