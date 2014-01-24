@@ -4,7 +4,7 @@ Deps.autorun(function() {
   Meteor.subscribe('varieties', Session.get('variety'));
 });
 
-var winesSub = Meteor.subscribe('wines');
+Meteor.subscribe('wines');
 
 Template.nav.helpers({
   totalValue: function() {
@@ -202,9 +202,19 @@ Template.form.rendered = function() {
   return window.scrollTo();
 };
 
+Deps.autorun(function() {
+  if (Router.current() && Router.current().ready() && Session.get('templateReady')) {
+    // hack
+    Meteor.setTimeout(function() {
+      $('.row').packery();
+      Session.set('templateReady', false);
+    }, 0);
+  }
+});
+
 Template.list.rendered = function() {
   // hack
   Meteor.setTimeout(function() {
-    $('.row').packery();
+    Session.set('templateReady', true);
   }, 0);
 };

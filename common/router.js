@@ -1,5 +1,5 @@
 var requireLogin = function() {
-  if (!Meteor.user()) {
+  if (! Meteor.user() && ! Meteor.loggingIn()) {
     return Router.go('signIn');
   }
 };
@@ -22,12 +22,6 @@ Router.map(function() {
   });
   this.route('home', {
     path: '/'
-    // waitOn: function() {
-    //   return Meteor.subscribe('wines');
-    // },
-    // after: function() {
-    //   return Session.set('loaded', true);
-    // }
   });
   this.route('archive', {
     path: '/archive',
