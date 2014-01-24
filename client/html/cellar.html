@@ -16,7 +16,7 @@
   {{#unless modal}}
     {{> nav}}
     
-    <div class="container">
+    <div class="wrapper">
       {{{view data}}}
     </div>
   {{else}}
@@ -251,7 +251,7 @@
 
 <template name="list">
   {{> search}}
-  <div class="row">
+  <div id="columns" class="">
     {{#each this}}
       {{> item}}
     {{/each}}
@@ -259,7 +259,7 @@
 </template>
 
 <template name="search">
-  <div id="search-container" class="container">
+  <div id="search-container">
     <input type="text" name="search" id="search" value="{{search}}" placeholder="Search year, name, winery, type and region. To search bottle numbers prefix with #">
     {{#if hasSearch}}
       <span class="clear">Clear</span>
@@ -268,7 +268,7 @@
 </template>
 
 <template name="item">
-  <div class="span3">
+  <div class="item">
     <h2><span class="badge ref">#{{ref}}</span> <a href="" class="edit">{{year}} {{winery}}</a></h2>
     <h3>{{type}}</h3>
     <h4>{{region}}</h4>
