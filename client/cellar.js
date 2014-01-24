@@ -4,12 +4,7 @@ Deps.autorun(function() {
   Meteor.subscribe('varieties', Session.get('variety'));
 });
 
-// FIX this
-Meteor.startup(function() {
-  Meteor.subscribe('wines', function() {
-    Session.set('loaded', true);
-  });
-});
+var winesSub = Meteor.subscribe('wines');
 
 Template.nav.helpers({
   totalValue: function() {
@@ -208,6 +203,8 @@ Template.form.rendered = function() {
 };
 
 Template.list.rendered = function() {
-  if (Session.equals('loaded', true))
-    new Packery('.row');
+  // hack
+  Meteor.setTimeout(function() {
+    $('.row').packery();
+  }, 0);
 };
