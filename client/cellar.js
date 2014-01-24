@@ -4,7 +4,9 @@ Deps.autorun(function() {
   Meteor.subscribe('varieties', Session.get('variety'));
 });
 
-Meteor.subscribe('wines');
+Meteor.startup(function() {
+  Meteor.subscribe('wines');
+});
 
 View = {
   set: function(template) {
