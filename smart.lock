@@ -2,24 +2,17 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "accounts-ui-bootstrap-dropdown": {
-        "version": "0.6.5.1"
+      "accounts-ui-bootstrap-dropdown": {},
+      "form2js-jquery": {},
+      "accounting": {},
+      "fastclick": {},
+      "packery": {},
+      "iron-router": {},
+      "auto-nprogress": {
+        "git": "https://github.com/dburles/meteor-auto-nprogress.git",
+        "branch": "patch-1"
       },
-      "form2js-jquery": {
-        "version": "0.1.2"
-      },
-      "accounting": {
-        "version": "0.3.2.3"
-      },
-      "fastclick": {
-        "version": "0.6.7"
-      },
-      "packery": {
-        "version": "0.1.0"
-      },
-      "iron-router": {
-        "version": "0.6.1"
-      }
+      "fast-render": {}
     },
     "packages": {
       "accounts-ui-bootstrap-dropdown": {
@@ -49,8 +42,23 @@
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
-        "tag": "v0.6.1",
-        "commit": "4e1ee0581d68bff422a915dacb0bd30eae10fe08"
+        "tag": "v0.6.2",
+        "commit": "ce56e58b45624dce992490f3a1c10f10d3948bae"
+      },
+      "auto-nprogress": {
+        "git": "https://github.com/dburles/meteor-auto-nprogress.git",
+        "branch": "patch-1",
+        "commit": "9d5c627236a640c4a01aee6d0674554b7ee7758f"
+      },
+      "fast-render": {
+        "git": "https://github.com/arunoda/meteor-fast-render.git",
+        "tag": "v0.1.12",
+        "commit": "b190f1592401f4084ce54b8f713b134e35a4e0db"
+      },
+      "nprogress": {
+        "git": "https://github.com/zhouzhuojie/meteor-nprogress.git",
+        "tag": "v0.0.3",
+        "commit": "ffd1c5dd400af64121197f4e637a215c4b6b1fc7"
       }
     }
   }

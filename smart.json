@@ -5,6 +5,11 @@
     "accounting": {},
     "fastclick": {},
     "packery": {},
-    "iron-router": {}
+    "iron-router": {},
+    "auto-nprogress": {
+      "git": "https://github.com/dburles/meteor-auto-nprogress.git",
+      "branch": "patch-1"
+    },
+    "fast-render": {}
   }
 }
