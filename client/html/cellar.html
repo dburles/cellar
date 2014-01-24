@@ -8,11 +8,34 @@
   <link rel="apple-touch-icon" sizes="144x144" href="/images/ios/touch-icon-ipad-retina.png" />
 </head>
 
-<template name="layout">
-  {{> nav}}
-  
-  <div class="container">
-    {{yield}}
+<body>
+  {{> application}}
+</body>
+
+<template name="application">
+  {{#unless modal}}
+    {{> nav}}
+    
+    <div class="container">
+      {{> view data}}
+    </div>
+  {{else}}
+    {{> promptModal}}
+  {{/unless}}
+</template>
+
+<template name="promptModal">
+  <div class="prompt modal">
+    <div class="modal-header">
+      <h3>Are you sure?</h3>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you wish to permanently delete this wine?</p>
+    </div>
+    <div class="modal-footer">
+      <a href="" class="btn cancel pull-left">Cancel</a>
+      <a href="" class="btn btn-danger delete">Delete</a>
+    </div>
   </div>
 </template>
 
@@ -40,13 +63,13 @@
       {{#if currentUser}}
         <ul class="nav">
           <li>
-            <a href="{{pathFor 'add'}}"><i class="icon-glass icon-white"></i> Add a new wine</a>
+            <a href="add"><i class="icon-glass icon-white"></i> Add a new wine</a>
           </li>
           <li>
-            <a href="{{pathFor 'home'}}"><i class="icon-list icon-white"></i> Home</a>
+            <a href="home"><i class="icon-list icon-white"></i> Home</a>
           </li>
           <li>
-            <a href="{{pathFor 'archive'}}"><i class="icon-time icon-white"></i> Archive</a>
+            <a href="archive"><i class="icon-time icon-white"></i> Archive</a>
           </li>
         </ul>
       {{/if}}
@@ -60,7 +83,7 @@
           </li>
         {{/if}}
         <li>
-          {{loginButtons}}
+          {{> loginButtons}}
         </li>
       </ul>
     </div>
@@ -68,7 +91,9 @@
 </template>
 
 <template name="edit">
-  {{> form}}
+  {{#with wine}}
+    {{> form}}
+  {{/with}}
 </template>
 
 <template name="add">
@@ -244,7 +269,7 @@
 
 <template name="item">
   <div class="span3">
-    <h2><span class="badge ref">#{{ref}}</span> <a href="{{pathFor 'edit'}}" class="edit">{{year}} {{winery}}</a><h2>
+    <h2><span class="badge ref">#{{ref}}</span> <a href="" class="edit">{{year}} {{winery}}</a></h2>
     <h3>{{type}}</h3>
     <h4>{{region}}</h4>
     <p>{{notes}}</p>

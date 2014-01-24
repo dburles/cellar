@@ -6,6 +6,70 @@ Deps.autorun(function() {
 
 Meteor.subscribe('wines');
 
+View = {
+  set: function(template) {
+    Session.set('previousView', Session.get('view'));
+    Session.set('view', template);
+  },
+  current: function() {
+    return Session.get('view');
+  },
+  previous: function() {
+    return Session.get('previousView');
+  }
+};
+
+View.set('home');
+
+Template.application.helpers({
+  view: function() {
+    return Session.get('view') && Template[Session.get('view')];
+  },
+  modal: function() {
+    return Session.get('promptModal');
+  }
+});
+
+
+
+Template.application.events({
+  'click a': function(event, template) {
+    var href = event.currentTarget.attributes.href;
+    if (href && Template[href.value]) {
+      event.preventDefault();
+      View.set(href.value);
+    }
+  }
+});
+
+Template.item.events({
+  'click a': function(event, template) {
+    event.preventDefault();
+    Session.set('_id', this._id);
+    View.set('edit');
+  }
+});
+
+Template.edit.helpers({
+  wine: function() {
+    return Wines.findOne(Session.get('_id'));
+  }
+});
+
+Deps.autorun(function() {
+  var currentView = View.current();
+  
+  if (! Meteor.user() && ! Meteor.loggingIn())
+    View.set('signIn');
+  else if (Meteor.user() && currentView === 'signIn')
+    View.set('home');
+
+  if (currentView === 'archive')
+    Meteor.subscribe('archive');
+  if (currentView === 'edit')
+    Meteor.subscribe('wine', Session.get('_id'));
+});
+
 Template.nav.helpers({
   totalValue: function() {
     var total = 0;
@@ -138,41 +202,41 @@ Template.select.helpers({
 });
 
 Template.form.events({
-  'keyup input[name="type"]': function(e, template) {
-    if (e.target.value.length > 1) {
+  'keyup input[name="type"]': function(event, template) {
+    if (event.target.value.length > 1) {
       return Session.set('variety', e.target.value);
     } else {
       return Session.set('variety', '');
     }
   },
-  'keyup input[name="winery"]': function(e, template) {
-    if (e.target.value.length > 1) {
+  'keyup input[name="winery"]': function(event, template) {
+    if (event.target.value.length > 1) {
       return Session.set('winery', e.target.value);
     } else {
       return Session.set('winery', '');
     }
   },
-  'keyup input[name="region"]': function(e, template) {
-    if (e.target.value.length > 1) {
+  'keyup input[name="region"]': function(event, template) {
+    if (event.target.value.length > 1) {
       return Session.set('region', e.target.value);
     } else {
       return Session.set('region', '');
     }
   },
-  'click .autocomplete-type a': function(e) {
+  'click .autocomplete-type a': function(event) {
     Session.set('variety', '');
-    $('input[name="type"]').val(e.target.text);
+    $('input[name="type"]').val(event.target.text);
   },
-  'click .autocomplete-winery a': function(e) {
+  'click .autocomplete-winery a': function(event) {
     Session.set('winery', '');
-    $('input[name="winery"]').val(e.target.text);
+    $('input[name="winery"]').val(event.target.text);
   },
-  'click .autocomplete-region a': function(e) {
+  'click .autocomplete-region a': function(event) {
     Session.set('region', '');
-    $('input[name="region"]').val(e.target.text);
+    $('input[name="region"]').val(event.target.text);
   },
-  'click #save': function(e, template) {
-    e.preventDefault();
+  'click #save': function(event, template) {
+    event.preventDefault();
     var data = $('#form').toObject();
     if (!data.year) {
       alert("Year is required");
@@ -183,18 +247,32 @@ Template.form.events({
     } else {
       Meteor.call('create', data);
     }
-    Router.go('home');
+    View.set('home');
   },
-  'click #delete': function(e, template) {
-    e.preventDefault();
-    if (confirm("Are you sure?")) {
-      Meteor.call('remove', this._id);
-      Router.go('home');
-    }
+  'click #delete': function(event, template) {
+    event.preventDefault();
+    Session.set('promptModal', true);
+    // if (confirm("Are you sure?")) {
+    //   Meteor.call('remove', this._id);
+    //   View.set(View.previous());
+    // }
   },
-  'click #cancel': function(e, template) {
-    e.preventDefault();
-    Router.go('home');
+  'click #cancel': function(event, template) {
+    event.preventDefault();
+    View.set(View.previous());
+  }
+});
+
+Template.promptModal.events({
+  'click .delete': function(event) {
+    event.preventDefault();
+    Wines.remove(Session.get('_id'));
+    Session.set('promptModal', false);
+    View.set(View.previous());
+  },
+  'click .cancel': function(event) {
+    event.preventDefault();
+    Session.set('promptModal', false);
   }
 });
 
@@ -202,19 +280,19 @@ Template.form.rendered = function() {
   return window.scrollTo();
 };
 
-Deps.autorun(function() {
-  if (Router.current() && Router.current().ready() && Session.get('templateReady')) {
-    // hack
-    Meteor.setTimeout(function() {
-      $('.row').packery();
-      Session.set('templateReady', false);
-    }, 0);
-  }
-});
+// Deps.autorun(function() {
+//   if () {
+//     // hack
+//     Meteor.setTimeout(function() {
+//       $('.row').packery();
+//       Session.set('templateReady', false);
+//     }, 0);
+//   }
+// });
 
-Template.list.rendered = function() {
-  // hack
-  Meteor.setTimeout(function() {
-    Session.set('templateReady', true);
-  }, 0);
-};
+// Template.list.rendered = function() {
+//   // hack
+//   Meteor.setTimeout(function() {
+//     $('.row').packery();
+//   }, 0);
+// };
