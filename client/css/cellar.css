@@ -1,12 +1,10 @@
 .wrapper {
-  width: 80%;
-  max-width: 1100px;
-  min-width: 800px;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
 }
 .container {
-
+  width: 100%;
 }
 
 .item {
@@ -122,7 +120,7 @@ h4 small {
   margin: 0;
 }
 
-.alert {
+.alert-x {
   width: 100%;
   color: #333;
   background: #FCF8E3;
@@ -135,7 +133,7 @@ h4 small {
   font-weight: bold;
 }
 
-.error {
+.error-x {
   width: 100%;
   color: #FFF;
   background: #ED143D;
