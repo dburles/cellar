@@ -20,9 +20,6 @@ View.setDefault('home');
 Template.application.helpers({
   view: function() {
     return View.current() && Template[View.current()];
-  },
-  modal: function() {
-    return Session.get('promptModal');
   }
 });
 
@@ -39,10 +36,12 @@ Template.application.events({
 Meteor.startup(function() {
   Deps.autorun(function() {
     var currentView = View.current();
-    
-    if (! Meteor.user() && ! Meteor.loggingIn())
+
+    // XXX should be less dumb
+    if (! Meteor.user() && ! Meteor.loggingIn() && View.current() !== 'auth')
       View.set('signIn');
-    else if (Meteor.user() && currentView === 'signIn')
+    
+    if (Meteor.user() && currentView === 'signIn')
       View.set('home');
 
     if (currentView === 'archive')
