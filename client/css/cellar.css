@@ -121,3 +121,29 @@ h4 small {
   background: #FFF;
   margin: 0;
 }
+
+.alert {
+  width: 100%;
+  color: #333;
+  background: #FCF8E3;
+  border-bottom: 4px solid #FAEBCC;
+  padding: 15px;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  text-align: center;
+  font-weight: bold;
+}
+
+.error {
+  width: 100%;
+  color: #FFF;
+  background: #ED143D;
+  border-bottom: 4px solid #CA0F33;
+  padding: 15px;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  text-align: center;
+  font-weight: bold;
+}

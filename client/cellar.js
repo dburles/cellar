@@ -58,18 +58,46 @@ Template.edit.helpers({
   }
 });
 
-Deps.autorun(function() {
-  var currentView = View.current();
-  
-  if (! Meteor.user() && ! Meteor.loggingIn())
-    View.set('signIn');
-  else if (Meteor.user() && currentView === 'signIn')
-    View.set('home');
+var winesCursor = function(query) {
+  if (! query)
+    query = {};
+  var search = Session.get('search');
+  if (search) {
+    if (search[0] === '#') {
+      query.ref = parseInt(search.substr(1));
+    } else {
+      var regexp = { $regex: search, $options: 'i' };
+      query.$or = [
+        { year: regexp },
+        { name: regexp },
+        { winery: regexp },
+        { type: regexp },
+        { region: regexp }
+      ];
+    }
+  }
+  return Wines.find(query, { sort: { ref: -1 }});
+};
 
-  if (currentView === 'archive')
-    Meteor.subscribe('archive');
-  if (currentView === 'edit')
-    Meteor.subscribe('wine', Session.get('_id'));
+Meteor.startup(function() {
+  Deps.autorun(function() {
+    var currentView = View.current();
+    
+    if (! Meteor.user() && ! Meteor.loggingIn())
+      View.set('signIn');
+    else if (Meteor.user() && currentView === 'signIn')
+      View.set('home');
+
+    if (currentView === 'archive')
+      Meteor.subscribe('archive');
+    if (currentView === 'edit')
+      Meteor.subscribe('wine', Session.get('_id'));
+
+    if (Session.get('search') && winesCursor().count() === 0)
+      Session.set('alert', 'No results were found for that search query.');
+    else
+      Session.set('alert', false);
+  });
 });
 
 Template.nav.helpers({
@@ -120,25 +148,6 @@ Template.search.helpers({
     return !!Session.get('search');
   }
 });
-
-var winesCursor = function(query) {
-  var search = Session.get('search');
-  if (search) {
-    if (search[0] === '#') {
-      query.ref = parseInt(search.substr(1));
-    } else {
-      var regexp = { $regex: search, $options: 'i' };
-      query.$or = [
-        { year: regexp },
-        { name: regexp },
-        { winery: regexp },
-        { type: regexp },
-        { region: regexp }
-      ];
-    }
-  }
-  return Wines.find(query, { sort: { ref: -1 }});
-};
 
 Template.home.helpers({
   wines: function() {
@@ -241,7 +250,7 @@ Template.form.events({
     event.preventDefault();
     var data = $('#form').toObject();
     if (!data.year) {
-      alert("Year is required");
+      showError("Year is required");
       return;
     }
     if (this._id) {
@@ -250,6 +259,9 @@ Template.form.events({
       Meteor.call('create', data);
     }
     View.set('home');
+    _.defer(function() {
+      showAlert('"' + data.year + ' ' + data.winery + '" has been saved.');
+    }, 0);
   },
   'click #delete': function(event, template) {
     event.preventDefault();
@@ -268,9 +280,13 @@ Template.form.events({
 Template.promptModal.events({
   'click .delete': function(event) {
     event.preventDefault();
+    var wine = Wines.findOne(Session.get('_id'));
     Wines.remove(Session.get('_id'));
     Session.set('promptModal', false);
     View.set(View.previous());
+    _.defer(function() {
+      showError('"' + wine.year + ' ' + wine.winery + '" has been deleted.');
+    }, 0);
   },
   'click .cancel': function(event) {
     event.preventDefault();
