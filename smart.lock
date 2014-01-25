@@ -10,8 +10,14 @@
         "git": "https://github.com/dburles/meteor-auto-nprogress.git",
         "branch": "patch-1"
       },
-      "accounts-ui-bootstrap-dropdown": {},
-      "fast-render": {}
+      "fast-render": {},
+      "accounts-ui-redux": {
+        "git": "https://github.com/stbaer/meteor-accounts-ui-redux",
+        "branch": "master"
+      },
+      "bootstrap3-less": {},
+      "font-awesome-4": {},
+      "factory": {}
     },
     "packages": {
       "form2js-jquery": {
@@ -39,15 +45,30 @@
         "branch": "patch-1",
         "commit": "9d5c627236a640c4a01aee6d0674554b7ee7758f"
       },
-      "accounts-ui-bootstrap-dropdown": {
-        "git": "https://github.com/erobit/meteor-accounts-ui-bootstrap-dropdown.git",
-        "tag": "v0.6.5.1",
-        "commit": "c8b29d2e7f8611d6dec9d6d23c1c2b94e000b0fb"
-      },
       "fast-render": {
         "git": "https://github.com/arunoda/meteor-fast-render.git",
         "tag": "v0.1.12",
         "commit": "b190f1592401f4084ce54b8f713b134e35a4e0db"
+      },
+      "accounts-ui-redux": {
+        "git": "https://github.com/stbaer/meteor-accounts-ui-redux",
+        "branch": "master",
+        "commit": "360d78882221837e7a7e0b0324ae6a23d4c06c24"
+      },
+      "bootstrap3-less": {
+        "git": "https://github.com/eprochasson/bootstrap3-less",
+        "tag": "v0.1.8",
+        "commit": "48b6db4435d9f01a1fcfe694a180b38e8e38835b"
+      },
+      "font-awesome-4": {
+        "git": "https://github.com/michaelbishop/meteor-font-awesome-4.git",
+        "tag": "v4.0.0",
+        "commit": "c28b5a0f2a2bd233c495642b40a167eda95172f5"
+      },
+      "factory": {
+        "git": "https://github.com/percolatestudio/meteor-factory.git",
+        "tag": "v0.2.2",
+        "commit": "3da490ce34255c33a6634a5d96af223317621ff2"
       },
       "nprogress": {
         "git": "https://github.com/zhouzhuojie/meteor-nprogress.git",

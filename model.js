@@ -1,21 +1,3 @@
-Wines = new Meteor.Collection('wines');
-Wineries = new Meteor.Collection('wineries');
-Regions = new Meteor.Collection('regions');
-Varieties = new Meteor.Collection('varieties');
-
-Wines.allow({
-  insert: function(userId, doc) {
-    return userId && doc.owner === userId;
-  },
-  update: function(userId, doc) {
-    return userId === doc.owner;
-  },
-  remove: function(userId, doc) {
-    return userId === doc.owner;
-  },
-  fetch: ['owner']
-});
-
 Meteor.methods({
   'create': function(data) {
     data.added = (new Date()).getTime();

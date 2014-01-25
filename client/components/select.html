@@ -1,0 +1,7 @@
+<template name="select">
+  <select name="{{name}}" class="form-control">  
+    {{#each decoratedOptions}}
+      <option value="{{value}}" {{#if selected}}selected{{/if}}>{{name}}</option>
+    {{/each}}
+  </select>
+</template>

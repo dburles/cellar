@@ -1,0 +1,9 @@
+<template name="list">
+  {{#if showSearch}}
+    {{> search}}
+  {{/if}}
+
+  {{#each this}}
+    {{> item}}
+  {{/each}}
+</template>

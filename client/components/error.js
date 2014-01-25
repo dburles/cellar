@@ -1,5 +1,5 @@
 Template.error.events({
-  'click .error': function() {
+  'click .error-x': function() {
     Session.set('error', false);
   }
 });

@@ -8,7 +8,12 @@
       "git": "https://github.com/dburles/meteor-auto-nprogress.git",
       "branch": "patch-1"
     },
-    "accounts-ui-bootstrap-dropdown": {},
-    "fast-render": {}
+    "fast-render": {},
+    "accounts-ui-redux": {
+      "git": "https://github.com/stbaer/meteor-accounts-ui-redux"
+    },
+    "bootstrap3-less": {},
+    "font-awesome-4": {},
+    "factory": {}
   }
 }

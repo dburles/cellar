@@ -1,0 +1,26 @@
+<head>
+  <title>Wine Cellar</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/images/ios/touch-icon-iphone.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/images/ios/touch-icon-ipad.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="/images/ios/touch-icon-iphone-retina.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/images/ios/touch-icon-ipad-retina.png" />
+</head>
+
+<body>
+  {{> application}}
+</body>
+
+<template name="application">
+  {{> alert}}
+  {{> error}}
+
+  {{> nav}}
+  
+  <div class="container">
+    {{> view data}}
+  </div>
+
+  {{> deleteModal}}
+</template>

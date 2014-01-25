@@ -1,0 +1,1 @@
+Varieties = new Meteor.Collection('varieties');
