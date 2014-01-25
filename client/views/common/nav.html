@@ -24,7 +24,7 @@
           {{/unless}}
         </ul>
       {{/if}}
-      <ul class="nav navbar-nav pull-right">
+      <ul class="nav navbar-nav navbar-right">
         {{#if currentUser}}
           <li>
             <a><i class="fa fa-dollar"></i> {{totalValue}}</a>
@@ -33,7 +33,11 @@
             <a>{{totalWines}} bottles</a>
           </li>
           <li>
-            <button type="button" class="btn btn-default navbar-btn">Sign In</button>
+            <button type="button" class="btn btn-default navbar-btn sign-out">Sign Out</button>
+          </li>
+        {{else}}
+          <li>
+            <button data-href="auth" type="button" class="btn btn-default navbar-btn">Sign In / Up</button>
           </li>
         {{/if}}
       </ul>

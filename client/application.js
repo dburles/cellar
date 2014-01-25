@@ -27,9 +27,10 @@ Template.application.helpers({
 });
 
 Template.application.events({
-  'click a': function(event, template) {
+  'click a, click button': function(event, template) {
     event.preventDefault();
-    var href = event.currentTarget.attributes.href;
+    var href = event.currentTarget.attributes.href || event.currentTarget.attributes['data-href'];
+    console.log(href);
     if (href && Template[href.value])
       View.set(href.value);
   }

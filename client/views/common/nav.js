@@ -33,5 +33,8 @@ Template.nav.events({
   'click .toggle-search': function(event) {
     event.preventDefault();
     Session.set('toggleSearch', !Session.get('toggleSearch') ? true : false);
+  },
+  'click .sign-out': function() {
+    Meteor.logout();
   }
 });
