@@ -20,4 +20,16 @@ Meteor.startup(function () {
       Varieties.insert(variety);
     });
   }
+
+  if (Meteor.users.find().count() === 0) {
+    var user = Factories.user.create();
+
+    _.times(40, function(n) {
+      Factories.wine.create({
+        owner: user._id
+      });
+    });
+
+    console.log('fixtures -- created user: ' + user.emails[0].address + ' password: test');
+  }
 });

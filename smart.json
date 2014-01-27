@@ -10,6 +10,8 @@
     },
     "fast-render": {},
     "font-awesome-4": {},
-    "factory": {}
+    "factory": {},
+    "fake": {},
+    "collection-hooks": {}
   }
 }

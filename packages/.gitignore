@@ -24,3 +24,5 @@ iron-router
 /bootstrap3-less
 /font-awesome-4
 /factory
+/fake
+/collection-hooks

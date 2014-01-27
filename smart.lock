@@ -12,7 +12,9 @@
       },
       "fast-render": {},
       "font-awesome-4": {},
-      "factory": {}
+      "factory": {},
+      "fake": {},
+      "collection-hooks": {}
     },
     "packages": {
       "form2js-jquery": {
@@ -54,6 +56,16 @@
         "git": "https://github.com/percolatestudio/meteor-factory.git",
         "tag": "v0.2.2",
         "commit": "3da490ce34255c33a6634a5d96af223317621ff2"
+      },
+      "fake": {
+        "git": "https://github.com/subhog/meteor-fake.git",
+        "tag": "v0.3.4",
+        "commit": "e5393ddad6fbee5638e5c430666693828b403abc"
+      },
+      "collection-hooks": {
+        "git": "https://github.com/matb33/meteor-collection-hooks.git",
+        "tag": "v0.6.2",
+        "commit": "29484b2110206be93b01c6d11ce06ec9208de7bd"
       },
       "nprogress": {
         "git": "https://github.com/zhouzhuojie/meteor-nprogress.git",
