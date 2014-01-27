@@ -1,92 +1,94 @@
 <template name="form">
-  <form id="form" role="form" method="post">
-    <div class="form-group">
-      {{#unless _id}}
-        <h1>NEW</h1>
-      {{else}}
-        <h1>EDIT <span class="label label-info pull-right">#{{ref}}</span></h1>
-      {{/unless}}
-    </div>
-    <div class="form-group">
-      <label class="control-label" for="qty">Quantity</label>
-      {{> select selectOptionsQty}}
-    </div>
-    <div class="form-group">
-      <label class="control-label" for="year">Year</label>
-      <input class="form-control" value="{{year}}" type="text" name="year">
-    </div>
-    <div class="form-group">
-      <label class="control-label" for="name">Name</label>
-      <input class="form-control" value="{{name}}" type="text" name="name">
-    </div>
-
-    <div class="form-group">
-      <label class="control-label" for="winery">Winery</label>
-      <input class="form-control autocomplete" value="{{winery}}" type="text" name="winery">
-    </div>
-    {{#each wineries}}
-    <div class="form-group">
-      <label class="control-label" for="">&nbsp;</label>
-      <div class="autocomplete-winery">
-        <a class="ac" data-name="winery" href="">{{name}}</a>
+  <div class="col-md-6">
+    <form id="form" role="form" method="post">
+      <div class="form-group">
+        {{#unless _id}}
+          <h1>NEW</h1>
+        {{else}}
+          <h1>EDIT <span class="label label-info pull-right">#{{ref}}</span></h1>
+        {{/unless}}
       </div>
-    </div>
-    {{/each}}
-
-    <div class="form-group">
-      <label class="control-label" for="description">Description</label>
-      <input class="form-control" value="{{description}}" type="text" name="description">
-    </div>
-
-    <div class="form-group">
-      <label class="control-label" for="type">Variety</label>
-      <input class="form-control autocomplete" value="{{type}}" type="text" name="type">
-    </div>
-    {{#each varieties}}
-    <div class="form-group">
-      <label class="control-label" for="">&nbsp;</label>
-      <a class="ac" data-name="type" href="">{{name}}</a>
-    </div>
-    {{/each}}
-
-    <div class="form-group">
-      <label class="control-label" for="region">Region</label>
-      <input class="form-control autocomplete" value="{{region}}" type="text" name="region">
-    </div>
-    {{#each regions}}
-    <div class="form-group">
-      <label class="control-label" for="">&nbsp;</label>
-      <a class="ac" data-name="region" href="">{{name}}</a>
-    </div>
-    {{/each}}
-
-    <div class="form-group">
-      <label class="control-label" for="drink_by">Drink By</label>
-      <input class="form-control" value="{{drink_by}}" type="text" name="drink_by">
-    </div>
-    <div class="form-group">
-      <label class="control-label" for="purchased">Purchased</label>
-      <input class="form-control" value="{{purchased}}" type="text" name="purchased">
-    </div>
-    <div class="form-group">
-      <label class="control-label" for="price">Price</label>
-      <input class="form-control" value="{{price}}" type="text" name="price">
-    </div>
-    <div class="form-group">
-      <label class="control-label" for="rating">Rating</label>
-      {{> select selectOptionsRating}}
-    </div>
-    <div class="form-group">
-      <label class="control-label" for="notes">Notes</label>
-      <div class="textarea-xlarge">
-        <textarea name="notes" type="" class="form-control">{{notes}}</textarea>
+      <div class="form-group">
+        <label class="control-label" for="qty">Quantity</label>
+        {{> select selectOptionsQty}}
       </div>
-    </div>
-    
-    <input type="submit" value="Save" class="save btn btn-success btn-lg">
-    <a class="cancel btn btn-default pull-right btn-lg">Cancel</a>
-    {{#if _id}}
-      <a class="delete btn btn-danger btn-xs pull-right" style="margin-right: 5px"><i class="icon-remove icon-white"></i> Delete</a>
-    {{/if}}
-  </form>
+      <div class="form-group">
+        <label class="control-label" for="year">Year</label>
+        <input class="form-control" value="{{year}}" type="text" name="year">
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="name">Name</label>
+        <input class="form-control" value="{{name}}" type="text" name="name">
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="winery">Winery</label>
+        <input class="form-control autocomplete" value="{{winery}}" type="text" name="winery">
+      </div>
+      {{#each wineries}}
+      <div class="form-group">
+        <label class="control-label" for="">&nbsp;</label>
+        <div class="autocomplete-winery">
+          <a class="ac" data-name="winery" href="">{{name}}</a>
+        </div>
+      </div>
+      {{/each}}
+
+      <div class="form-group">
+        <label class="control-label" for="description">Description</label>
+        <input class="form-control" value="{{description}}" type="text" name="description">
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="type">Variety</label>
+        <input class="form-control autocomplete" value="{{type}}" type="text" name="type">
+      </div>
+      {{#each varieties}}
+      <div class="form-group">
+        <label class="control-label" for="">&nbsp;</label>
+        <a class="ac" data-name="type" href="">{{name}}</a>
+      </div>
+      {{/each}}
+
+      <div class="form-group">
+        <label class="control-label" for="region">Region</label>
+        <input class="form-control autocomplete" value="{{region}}" type="text" name="region">
+      </div>
+      {{#each regions}}
+      <div class="form-group">
+        <label class="control-label" for="">&nbsp;</label>
+        <a class="ac" data-name="region" href="">{{name}}</a>
+      </div>
+      {{/each}}
+
+      <div class="form-group">
+        <label class="control-label" for="drink_by">Drink By</label>
+        <input class="form-control" value="{{drink_by}}" type="text" name="drink_by">
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="purchased">Purchased</label>
+        <input class="form-control" value="{{purchased}}" type="text" name="purchased">
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="price">Price</label>
+        <input class="form-control" value="{{price}}" type="text" name="price">
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="rating">Rating</label>
+        {{> select selectOptionsRating}}
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="notes">Notes</label>
+        <div class="textarea-xlarge">
+          <textarea name="notes" type="" class="form-control">{{notes}}</textarea>
+        </div>
+      </div>
+      
+      <input type="submit" value="Save" class="save btn btn-primary btn-lg">
+      <a class="cancel btn btn-default pull-right btn-lg">Cancel</a>
+      {{#if _id}}
+        <a class="delete btn btn-danger btn-xs pull-right" style="margin-right: 5px"><i class="icon-remove icon-white"></i> Delete</a>
+      {{/if}}
+    </form>
+  </div>
 </template>
