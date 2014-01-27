@@ -5,6 +5,7 @@ Deps.autorun(function() {
 });
 
 accounting.settings.currency.format = "%v";
+NProgress.settings.showSpinner = false;
 
 View.after(function() {
   Session.set('search', '');

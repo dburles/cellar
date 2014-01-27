@@ -54,7 +54,7 @@ Template.form.events({
     Session.set(name, '');
     $('input[name="' + name + '"]').val(event.target.text);
   },
-  '#form submit': function(event, template) {
+  'submit #form': function(event, template) {
     event.preventDefault();
     var data = $('#form').toObject();
 

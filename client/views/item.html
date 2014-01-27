@@ -1,19 +1,20 @@
 <template name="item">
-  <div class="item">
-    <h2><span class="badge ref">#{{ref}}</span> <a href="" class="edit">{{year}} {{winery}}</a></h2>
-    <h3>{{type}}</h3>
-    <h4>{{region}}</h4>
-    <p>{{notes}}</p>
-    {{#if drink_by}}
-      <p>Drink by {{drink_by}}</p>
-    {{/if}}
-    
-    <span class="badge">x {{qty}}</span>
-    {{#if price}}
-      <span class="badge">${{price}}</span>
-    {{/if}}
-    {{#if rating}}
-      <span class="badge">{{rating}}/10</span>
-    {{/if}}
+  <div class="col-sm-4">
+    <a href="" class="edit list-group-item">
+      <h2 class="list-group-item-heading">{{year}} {{winery}} {{type}}</h2>
+      <h4>{{region}}</h4>
+      <p class="list-group-item-text">{{notes}}</p>
+      {{#if drink_by}}
+        <p>Drink by {{drink_by}}</p>
+      {{/if}}
+      
+      <span class="badge">x {{qty}}</span>
+      {{#if price}}
+        <span class="badge">${{price}}</span>
+      {{/if}}
+      {{#if rating}}
+        <span class="badge">{{rating}}/10</span>
+      {{/if}}
+    </a>
   </div>
 </template>

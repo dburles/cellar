@@ -6,7 +6,7 @@ Template.home.helpers({
       return Wines.find({ qty: { $gt: 0 }}, { sort: { ref: -1 }});
   },
   hasWines: function() {
-    if (! Session.get('search') && Wines.find().count() > 0)
+    if (Wines.find().count() > 0)
       return true;
   }
 });

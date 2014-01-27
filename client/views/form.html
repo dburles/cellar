@@ -82,12 +82,11 @@
         <textarea name="notes" type="" class="form-control">{{notes}}</textarea>
       </div>
     </div>
-    <div class="form-group">
-      <input type="submit" value="Save" class="save btn btn-success btn-lg">
-      <a class="cancel btn btn-default pull-right btn-lg">Cancel</a>
-      {{#if _id}}
-        <a class="delete btn btn-danger btn-sm pull-right" style="margin-right: 5px"><i class="icon-remove icon-white"></i> Delete</a>
-      {{/if}}
-    </div>
+    
+    <input type="submit" value="Save" class="save btn btn-success btn-lg">
+    <a class="cancel btn btn-default pull-right btn-lg">Cancel</a>
+    {{#if _id}}
+      <a class="delete btn btn-danger btn-xs pull-right" style="margin-right: 5px"><i class="icon-remove icon-white"></i> Delete</a>
+    {{/if}}
   </form>
 </template>
