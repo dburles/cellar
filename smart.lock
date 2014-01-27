@@ -2,7 +2,6 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "form2js-jquery": {},
       "accounting": {},
       "fastclick": {},
       "packery": {},
@@ -17,11 +16,6 @@
       "collection-hooks": {}
     },
     "packages": {
-      "form2js-jquery": {
-        "git": "https://github.com/nate-strauser/meteor-form2js-jquery.git",
-        "tag": "v0.1.2",
-        "commit": "30b7d927feb6ef562ff5a980b7ecd72d46820b87"
-      },
       "accounting": {
         "git": "https://github.com/IainShigeoka/meteor-accounting.git",
         "tag": "v0.3.2.3",

@@ -30,8 +30,8 @@ Factories.wine = new Factory(Wines, {
     var regions = Regions.find().fetch();
     return regions[_.random(0, regions.length - 1)].name;
   },
-  name: Fake.word(),
-  year: _.random(2000, 2014),
+  name: function() { return Fake.word(); },
+  year: function() { return _.random(2000, 2014); },
   type: function() {
     var varieties = Varieties.find().fetch();
     return varieties[_.random(0, varieties.length - 1)].name;

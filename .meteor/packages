@@ -7,7 +7,6 @@ preserve-inputs
 jquery
 accounts-base
 accounts-password
-form2js-jquery
 underscore
 standard-app-packages
 accounting

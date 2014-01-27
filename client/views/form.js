@@ -56,7 +56,23 @@ Template.form.events({
   },
   'submit #form': function(event, template) {
     event.preventDefault();
-    var data = $('#form').toObject();
+
+    var data = {
+      description: $('input[name="description"]').val(),
+      drink_by: $('input[name="drink_by"]').val(),
+      name: $('input[name="name"]').val(),
+      notes: $('textarea[name="notes"]').val(),
+      price: $('input[name="price"]').val(),
+      purchased: $('input[name="purchased"]').val(),
+      qty: $('select[name="qty"]').val(),
+      rating: $('select[name="rating"]').val(),
+      region: $('input[name="region"]').val(),
+      type: $('input[name="type"]').val(),
+      winery: $('input[name="winery"]').val(),
+      year: $('input[name="year"]').val()
+    };
+
+    console.log(data);
 
     if (! data.year)
       return showError("Year is required");
