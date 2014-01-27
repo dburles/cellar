@@ -54,19 +54,21 @@ Template.form.events({
     Session.set(name, '');
     $('input[name="' + name + '"]').val(event.target.text);
   },
-  'click .save': function(event, template) {
+  '#form submit': function(event, template) {
     event.preventDefault();
     var data = $('#form').toObject();
-    if (!data.year) {
-      showError("Year is required");
-      return;
-    }
+
+    if (! data.year)
+      return showError("Year is required");
+
     if (this._id) {
       Meteor.call('update', this._id, data);
     } else {
       Meteor.call('create', data);
     }
-    View.set('home');
+    
+    View.set(View.previous());
+
     _.defer(function() {
       showAlert('"' + data.year + ' ' + data.winery + '" has been saved.');
     });

@@ -1,5 +1,5 @@
 <template name="form">
-  <form id="form" role="form">
+  <form id="form" role="form" method="post">
     <div class="form-group">
       {{#unless _id}}
         <h1>NEW</h1>
@@ -83,7 +83,7 @@
       </div>
     </div>
     <div class="form-group">
-      <a class="save btn btn-success btn-lg">Save</a>
+      <input type="submit" value="Save" class="save btn btn-success btn-lg">
       <a class="cancel btn btn-default pull-right btn-lg">Cancel</a>
       {{#if _id}}
         <a class="delete btn btn-danger btn-sm pull-right" style="margin-right: 5px"><i class="icon-remove icon-white"></i> Delete</a>

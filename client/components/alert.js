@@ -1,5 +1,5 @@
 Template.alert.events({
-  'click .alert-x': function() {
+  'click .alert': function() {
     Session.set('alert', false);
   }
 });

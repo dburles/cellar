@@ -11,11 +11,6 @@
         "branch": "patch-1"
       },
       "fast-render": {},
-      "accounts-ui-redux": {
-        "git": "https://github.com/stbaer/meteor-accounts-ui-redux",
-        "branch": "master"
-      },
-      "bootstrap3-less": {},
       "font-awesome-4": {},
       "factory": {}
     },
@@ -49,16 +44,6 @@
         "git": "https://github.com/arunoda/meteor-fast-render.git",
         "tag": "v0.1.12",
         "commit": "b190f1592401f4084ce54b8f713b134e35a4e0db"
-      },
-      "accounts-ui-redux": {
-        "git": "https://github.com/stbaer/meteor-accounts-ui-redux",
-        "branch": "master",
-        "commit": "360d78882221837e7a7e0b0324ae6a23d4c06c24"
-      },
-      "bootstrap3-less": {
-        "git": "https://github.com/eprochasson/bootstrap3-less",
-        "tag": "v0.1.8",
-        "commit": "48b6db4435d9f01a1fcfe694a180b38e8e38835b"
       },
       "font-awesome-4": {
         "git": "https://github.com/michaelbishop/meteor-font-awesome-4.git",

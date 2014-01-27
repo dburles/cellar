@@ -1,12 +1,55 @@
-@import "/packages/bootstrap3-less/bootstrap.lessimport";
-@import "/packages/accounts-ui-redux/accounts_ui.lessimport";
-
-body {
-  padding-top: 70px;
+.navbar-decorated {
+  background: url('/images/cellar.jpg');
+  a {
+    color: #FFF;
+  }
+  a:hover {
+    background: fade(#000, 30%) !important;
+  }
 }
+.btn-decorated-dark {
+  background: #B16E41;
+  border-bottom: 4px solid #885330;
+  outline: none;
+  color: #FFF;
+  &:hover {
+    color: #FFF;
+  }
+  padding: 4px 12px;
+}
+.btn-decorated-light {
+  background: #FFF;
+  border-bottom: 4px solid #DDD;
+  outline: none;
+  color: #333;
+  &:hover {
+    color: #333;
+  }
+  padding: 4px 12px;
+}
+
+// #nprogress {
+//   .bar {
+//     background: #FFF;
+//   }
+//   .peg {
+//     box-shadow: 0 0 10px #FFF, 0 0 5px #FFF;
+//   }
+//   .spinner-icon {
+//     border-left-color: #FFF;
+//     border-top-color: #FFF;
+//   }
+// }
 
 #login-dropdown-list {
   margin-right: 45px;
+}
+
+.alert-fixed {
+  width: 100%;
+  z-index: 9999;
+  position: fixed;
+  text-align: center;
 }
 
 .alert-x {

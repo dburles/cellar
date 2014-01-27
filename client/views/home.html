@@ -1,3 +1,7 @@
 <template name="home">
-  {{> list wines}}
+  {{#if hasWines}}
+    {{> list wines}}
+  {{else}}
+    <h2>To begin, press <i class="fa fa-glass"></i> Add</h2>
+  {{/if}}
 </template>

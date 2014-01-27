@@ -1,5 +1,5 @@
 <template name="nav">
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default" role="navigation">
     <div class="container">
       <div class="navbar-header">
         <a class="navbar-brand" href="home">Wine Cellar</a>
@@ -7,7 +7,7 @@
       {{#if currentUser}}
         <ul class="nav navbar-nav">
           <li>
-            <a href="add"><i class="fa fa-glass"></i> Add a new wine</a>
+            <a href="add"><i class="fa fa-glass"></i> Add</a>
           </li>
           <li>
             <a href="home"><i class="fa fa-list-alt"></i> Home</a>
@@ -33,11 +33,11 @@
             <a>{{totalWines}} bottles</a>
           </li>
           <li>
-            <button type="button" class="btn btn-default navbar-btn sign-out">Sign Out</button>
+            <a href="" class="sign-out"><i class="fa fa-sign-out"></i> Sign Out</a>
           </li>
         {{else}}
           <li>
-            <button data-href="auth" type="button" class="btn btn-default navbar-btn">Sign In / Up</button>
+            <a href="auth"><i class="fa fa-sign-in"></i> Sign In / Up</a>
           </li>
         {{/if}}
       </ul>

@@ -16,10 +16,7 @@ packery
 auto-nprogress
 fast-render
 less
-bootstrap3-less
 font-awesome-4
-simple-schema
-accounts-ui-redux
 view-controller
 factory
 srp

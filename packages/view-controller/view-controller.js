@@ -10,13 +10,13 @@ ViewController.prototype.setDefault = function(template) {
 ViewController.prototype.set = function(template) {
   console.log('view set: ' + template);
   _.each(this.beforeHooks, function(cb) {
-    if (cb.ex.indexOf(template) !== -1)
+    if (cb.ex.indexOf(template) === -1)
       cb.fn();
   });
   Session.set('previousView', Session.get('view'));
   Session.set('view', template);
   _.each(this.afterHooks, function(cb) {
-    if (cb.ex.indexOf(template) !== -1)
+    if (cb.ex.indexOf(template) === -1)
       cb.fn();
   });
 };

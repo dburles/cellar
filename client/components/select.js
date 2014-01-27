@@ -5,5 +5,8 @@ Template.select.helpers({
       option.selected = option.value === parseInt(self.value);
       return option;
     });
+  },
+  isSelected: function() {
+    return this.selected ? { selected: true } : {};
   }
 });
