@@ -15,7 +15,7 @@ View.after(function() {
 View.setDefault('home');
 
 Template.application.helpers({
-  view: function() {
+  pageView: function() {
     return View.current() && Template[View.current()];
   }
 });
@@ -46,7 +46,7 @@ Meteor.startup(function() {
 
     if (currentView === 'archive')
       Meteor.subscribe('archive');
-    if (currentView === 'edit')
+    if (currentView === 'edit' || currentView === 'view')
       Meteor.subscribe('wine', Session.get('_id'));
   });
 });

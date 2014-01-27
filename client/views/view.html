@@ -1,0 +1,27 @@
+<template name="view">
+  {{#with wine}}
+
+    <div class="jumbotron">
+      <h3><span class="label label-info pull-right">#{{ref}}</span></h3>
+      <h1>{{year}} {{winery}} {{type}}</h1>
+      
+      <h2>{{region}}</h2>
+      <p>{{notes}}</p>
+      {{#if drink_by}}
+        <hr>
+        <p>Drink by {{drink_by}}</p>
+      {{/if}}
+      
+      <span class="label label-default">&times; {{qty}}</span>
+      {{#if price}}
+        <span class="label label-default">${{price}}</span>
+      {{/if}}
+      {{#if rating}}
+        <span class="label label-default">{{rating}}/10</span>
+      {{/if}}
+      
+      <a href="edit" class="btn btn-info edit pull-right">Edit</a>
+    </div>
+
+  {{/with}}
+</template>
