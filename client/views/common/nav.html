@@ -22,13 +22,11 @@
             <li>
               <a href="archive"><i class="fa fa-clock-o"></i> Archive</a>
             </li>
-            {{#unless currentView 'edit'}}
-              {{#unless currentView 'add'}}
-                <li>
-                  <a href="" class="toggle-search"><i class="fa fa-search"></i> Search</a>
-                </li>
-              {{/unless}}
-            {{/unless}}
+            {{#if canSearch}}
+              <li>
+                <a href="" class="toggle-search"><i class="fa fa-search"></i> Search</a>
+              </li>
+            {{/if}}
           </ul>
         {{/if}}
         <ul class="nav navbar-nav navbar-right">
