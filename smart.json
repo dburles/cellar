@@ -6,7 +6,6 @@
       "git": "https://github.com/dburles/meteor-auto-nprogress.git",
       "branch": "patch-1"
     },
-    "fast-render": {},
     "font-awesome-4": {},
     "factory": {},
     "fake": {},

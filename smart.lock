@@ -8,7 +8,6 @@
         "git": "https://github.com/dburles/meteor-auto-nprogress.git",
         "branch": "patch-1"
       },
-      "fast-render": {},
       "font-awesome-4": {},
       "factory": {},
       "fake": {},
@@ -29,11 +28,6 @@
         "git": "https://github.com/dburles/meteor-auto-nprogress.git",
         "branch": "patch-1",
         "commit": "9d5c627236a640c4a01aee6d0674554b7ee7758f"
-      },
-      "fast-render": {
-        "git": "https://github.com/arunoda/meteor-fast-render.git",
-        "tag": "v0.1.12",
-        "commit": "b190f1592401f4084ce54b8f713b134e35a4e0db"
       },
       "font-awesome-4": {
         "git": "https://github.com/michaelbishop/meteor-font-awesome-4.git",

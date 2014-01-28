@@ -12,7 +12,6 @@ standard-app-packages
 accounting
 fastclick
 auto-nprogress
-fast-render
 less
 font-awesome-4
 view-controller
