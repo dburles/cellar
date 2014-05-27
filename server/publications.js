@@ -23,40 +23,22 @@ Meteor.publish('wine', function(_id) {
 });
 
 Meteor.publish('wineries', function(search) {
-  if (search) {
-    return Wineries.find({
-      name: {
-        $regex: '^' + search,
-        $options: 'i'
-      }
-    }, {
-      limit: 10
-    });
-  }
+  if (! search)
+    return this.ready();
+  
+  return Wineries.search(search);
 });
 
 Meteor.publish('regions', function(search) {
-  if (search) {
-    return Regions.find({
-      name: {
-        $regex: '^' + search,
-        $options: 'i'
-      }
-    }, {
-      limit: 10
-    });
-  }
+  if (! search)
+    return this.ready();
+
+  return Regions.search(search);
 });
 
 Meteor.publish('varieties', function(search) {
-  if (search) {
-    return Varieties.find({
-      name: {
-        $regex: '^' + search,
-        $options: 'i'
-      }
-    }, {
-      limit: 10
-    });
-  }
+  if (! search)
+    return this.ready();
+  
+  return Varieties.search(search);
 });

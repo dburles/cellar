@@ -1,6 +1,15 @@
-Template.form.rendered = function() {
-  return window.scrollTo();
+Template.form.created = function() {
+  Session.set('region', '');
+  Session.set('winery', '');
+  Session.set('type', '');
+  return window.scrollTo(0, 0);
 };
+
+Deps.autorun(function() {
+  Meteor.subscribe('wineries', Session.get('winery'));
+  Meteor.subscribe('regions', Session.get('region'));
+  Meteor.subscribe('varieties', Session.get('type'));
+});
 
 Template.form.helpers({
   selectOptionsQty: function() {
@@ -33,13 +42,13 @@ Template.form.helpers({
     };
   },
   varieties: function() {
-    return Varieties.find({ }, { sort: name });
+    return Varieties.search(Session.get('type'));
   },
   wineries: function() {
-    return Wineries.find({}, { sort: name });
+    return Wineries.search(Session.get('winery'));
   },
   regions: function() {
-    return Regions.find({}, { sort: name });
+    return Regions.search(Session.get('region'));
   }
 });
 

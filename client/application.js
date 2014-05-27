@@ -1,9 +1,3 @@
-Deps.autorun(function() {
-  Meteor.subscribe('wineries', Session.get('winery'));
-  Meteor.subscribe('regions', Session.get('region'));
-  Meteor.subscribe('varieties', Session.get('variety'));
-});
-
 accounting.settings.currency.format = "%v";
 NProgress.settings.showSpinner = false;
 

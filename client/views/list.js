@@ -1,5 +1,5 @@
-Template.list.rendered = function() {
-  return window.scrollTo();
+Template.list.created = function() {
+  return window.scrollTo(0, 0);
 };
 
 Template.list.helpers({

@@ -13,14 +13,14 @@ Wines.allow({
   fetch: ['owner']
 });
 
-Wines.search = function(search, query) {
+Wines.search = function(searchString, query) {
   if (! query)
     query = {};
-  if (! _.isEmpty(search)) {
-    if (search[0] === '#') {
-      query.ref = parseInt(search.substr(1));
+  if (! _.isEmpty(searchString)) {
+    if (searchString[0] === '#') {
+      query.ref = parseInt(searchString.substr(1));
     } else {
-      var regexp = { $regex: RegExp.escape(search), $options: 'i' };
+      var regexp = { $regex: RegExp.escape(searchString), $options: 'i' };
       query.$or = [
         { year: regexp },
         { name: regexp },

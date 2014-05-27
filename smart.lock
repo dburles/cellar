@@ -4,12 +4,11 @@
     "basePackages": {
       "accounting": {},
       "fastclick": {},
-      "auto-nprogress": {
-        "git": "https://github.com/dburles/meteor-auto-nprogress.git",
-        "branch": "patch-1"
+      "auto-nprogress": {},
+      "font-awesome": {},
+      "factory": {
+        "version": "0.2.2"
       },
-      "font-awesome-4": {},
-      "factory": {},
       "fake": {},
       "collection-hooks": {}
     },
@@ -25,14 +24,14 @@
         "commit": "fcb3bfd34d9f6874e626b4e24e8f54107938db41"
       },
       "auto-nprogress": {
-        "git": "https://github.com/dburles/meteor-auto-nprogress.git",
-        "branch": "patch-1",
-        "commit": "9d5c627236a640c4a01aee6d0674554b7ee7758f"
+        "git": "https://github.com/settinghead/meteor-auto-nprogress.git",
+        "tag": "v0.2.7",
+        "commit": "3fa87d5244e140cc5b49696585cd23b110c36467"
       },
-      "font-awesome-4": {
-        "git": "https://github.com/michaelbishop/meteor-font-awesome-4.git",
-        "tag": "v4.0.0",
-        "commit": "c28b5a0f2a2bd233c495642b40a167eda95172f5"
+      "font-awesome": {
+        "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
+        "tag": "v4.1.0",
+        "commit": "ce6b1e92715d1938babc5d69c655c17e387f5926"
       },
       "factory": {
         "git": "https://github.com/percolatestudio/meteor-factory.git",
@@ -46,13 +45,13 @@
       },
       "collection-hooks": {
         "git": "https://github.com/matb33/meteor-collection-hooks.git",
-        "tag": "v0.6.2",
-        "commit": "29484b2110206be93b01c6d11ce06ec9208de7bd"
+        "tag": "v0.6.7",
+        "commit": "f1d2ac629864edda09df6c955fa5ff3df26f739c"
       },
       "nprogress": {
         "git": "https://github.com/zhouzhuojie/meteor-nprogress.git",
-        "tag": "v0.0.3",
-        "commit": "ffd1c5dd400af64121197f4e637a215c4b6b1fc7"
+        "tag": "v0.0.4",
+        "commit": "8333206b751a24fac1fbd1b03fa37621bcefe50c"
       }
     }
   }

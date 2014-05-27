@@ -2,12 +2,11 @@
   "packages": {
     "accounting": {},
     "fastclick": {},
-    "auto-nprogress": {
-      "git": "https://github.com/dburles/meteor-auto-nprogress.git",
-      "branch": "patch-1"
+    "auto-nprogress": {},
+    "font-awesome": {},
+    "factory": {
+      "version": "0.2.2"
     },
-    "font-awesome-4": {},
-    "factory": {},
     "fake": {},
     "collection-hooks": {}
   }

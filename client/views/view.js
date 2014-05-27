@@ -1,5 +1,5 @@
-Template.view.rendered = function() {
-  return window.scrollTo();
+Template.view.created = function() {
+  return window.scrollTo(0, 0);
 };
 
 Template.view.helpers({
