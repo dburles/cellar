@@ -11,10 +11,9 @@ standard-app-packages
 accounting
 fastclick
 less
-font-awesome-4
-view-controller
 factory
 srp
 fake
 nprogress
 iron-router
+font-awesome
