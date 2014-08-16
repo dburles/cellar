@@ -41,6 +41,9 @@ Meteor.startup(function() {
     if (Meteor.user() && (currentView === 'signIn' || currentView === 'auth'))
       View.set('home');
 
+    if (! Meteor.user())
+      return;
+
     if (_.contains(['home', 'edit', 'view'], currentView)) {
       subs.wines = Meteor.subscribe('wines');
       NProgress.start();
@@ -54,7 +57,7 @@ Meteor.startup(function() {
       if (subs.archive.ready())
         NProgress.done();
     }
-    
+
     if (currentView === 'edit' || currentView === 'view')
       subs.wine = Meteor.subscribe('wine', Session.get('_id'));
   });
