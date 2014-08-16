@@ -8,19 +8,19 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="home">Wine Cellar</a>
+        <a class="navbar-brand" href="{{pathFor 'main'}}">Wine Cellar</a>
       </div>
       <div class="collapse navbar-collapse" id="main-navbar-collapse">
         {{#if currentUser}}
           <ul class="nav navbar-nav">
             <li>
-              <a href="add"><i class="fa fa-glass"></i> Add</a>
+              <a href="{{pathFor 'add'}}"><i class="fa fa-glass"></i> Add</a>
             </li>
             <li>
-              <a href="home"><i class="fa fa-list-alt"></i> Home</a>
+              <a href="{{pathFor 'main'}}"><i class="fa fa-list-alt"></i> Home</a>
             </li>
             <li>
-              <a href="archive"><i class="fa fa-clock-o"></i> Archive</a>
+              <a href="{{pathFor 'archive'}}"><i class="fa fa-clock-o"></i> Archive</a>
             </li>
             {{#if canSearch}}
               <li>
@@ -42,7 +42,7 @@
             </li>
           {{else}}
             <li>
-              <a href="auth"><i class="fa fa-sign-in"></i> Sign In / Up</a>
+              <a href="{{pathFor 'auth'}}"><i class="fa fa-sign-in"></i> Sign In / Up</a>
             </li>
           {{/if}}
         </ul>

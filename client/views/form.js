@@ -64,6 +64,7 @@ Template.form.events({
     $('input[name="' + name + '"]').val(event.target.text);
   },
   'submit #form': function(event, template) {
+    var self = this;
     event.preventDefault();
 
     var data = {
@@ -86,17 +87,17 @@ Template.form.events({
     if (! data.year)
       return showError("Year is required");
 
-    if (this._id) {
-      Meteor.call('update', this._id, data);
+    if (self._id) {
+      Meteor.call('update', this._id, data, function() {
+        Router.go('view', self);
+      });
     } else {
-      Meteor.call('create', data);
+      Meteor.call('create', data, function(error, response) {
+        Router.go('view', { _id: response });
+      });
     }
-    
-    View.set(View.previous());
 
-    _.defer(function() {
-      showAlert('"' + data.year + ' ' + data.winery + '" has been saved.');
-    });
+    showAlert('"' + data.year + ' ' + data.winery + '" has been saved.');
   },
   'click .delete': function(event, template) {
     event.preventDefault();
@@ -105,6 +106,6 @@ Template.form.events({
   },
   'click .cancel': function(event, template) {
     event.preventDefault();
-    View.set(View.previous());
+    Router.go('view', this);
   }
 });

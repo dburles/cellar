@@ -19,7 +19,7 @@ Template.nav.helpers({
     return accounting.formatMoney(total);
   },
   canSearch: function() {
-    return View.current() === 'home' || View.current() === 'archive';
+    return Router.current() && Router.current().canSearch;
   }
 });
 

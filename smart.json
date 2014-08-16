@@ -6,6 +6,7 @@
     "factory": {
       "version": "0.2.2"
     },
-    "fake": {}
+    "fake": {},
+    "iron-router": {}
   }
 }

@@ -12,19 +12,18 @@
   <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700" rel="stylesheet" type="text/css" />
 </head>
 
-<body>
-  {{> application}}
-</body>
-
-<template name="application">
+<template name="layout">
   {{> alert}}
   {{> error}}
-
   {{> nav}}
   
   <div class="container">
-    {{> pageView data}}
+    {{> yield}}
   </div>
 
   {{> deleteModal}}
+</template>
+
+<template name="notFound">
+  <h1>404 Page not found</h1>
 </template>

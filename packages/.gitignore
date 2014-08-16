@@ -27,3 +27,7 @@ iron-router
 /fake
 /collection-hooks
 /font-awesome
+/iron-layout
+/blaze-layout
+/iron-core
+/iron-dynamic-template
