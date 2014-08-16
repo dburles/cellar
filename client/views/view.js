@@ -5,5 +5,8 @@ Template.view.created = function() {
 Template.view.helpers({
   wine: function() {
     return Wines.findOne(Session.get('_id'));
+  },
+  canGoBack: function() {
+    return View.previous() === 'home';
   }
 });
