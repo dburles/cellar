@@ -12,13 +12,6 @@ Router.onBeforeAction(function(pause) {
     this.render('signIn');
     return pause();
   }
-
-  this.wait(Meteor.subscribe('wines'));
-
-  NProgress.start();
-  
-  if (this.ready())
-    NProgress.done();
 }, { except: ['auth'] });
 
 Router.map(function() {
@@ -33,6 +26,17 @@ Router.map(function() {
 MainController = RouteController.extend({
   template: 'list',
   canSearch: true,
+  onBeforeAction: function() {
+    if (! Meteor.user())
+      return;
+    
+    this.wait(Meteor.subscribe('wines'));
+
+    NProgress.start();
+    
+    if (this.ready())
+      NProgress.done();
+  },
   data: function() {
     var wines;
 
