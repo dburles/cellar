@@ -1,3 +1,7 @@
+Meteor.publish('allWines', function() {
+  return Wines.find({ owner: this.userId });
+});
+
 Meteor.publish('wines', function() {
   return Wines.find({
     qty: {
