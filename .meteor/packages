@@ -10,11 +10,10 @@ underscore
 standard-app-packages
 accounting
 fastclick
-auto-nprogress
 less
 font-awesome-4
 view-controller
 factory
 srp
 fake
-collection-hooks
+nprogress

@@ -28,23 +28,33 @@ Template.application.events({
   }
 });
 
+var subs = {};
+
 Meteor.startup(function() {
   Deps.autorun(function() {
     var currentView = View.current();
 
-    if (Meteor.user())
-      Meteor.subscribe('wines');
-
     // XXX should be less dumb
-    if (! Meteor.user() && ! Meteor.loggingIn() && View.current() !== 'auth')
+    if (! Meteor.user() && ! Meteor.loggingIn() && currentView !== 'auth')
       View.set('signIn');
 
     if (Meteor.user() && (currentView === 'signIn' || currentView === 'auth'))
       View.set('home');
 
-    if (currentView === 'archive')
-      Meteor.subscribe('archive');
+    if (currentView === 'home') {
+      subs.wines = Meteor.subscribe('wines');
+      NProgress.start();
+      if (subs.wines.ready())
+        NProgress.done();
+    }
+
+    if (currentView === 'archive') {
+      subs.archive = Meteor.subscribe('archive');
+      NProgress.start();
+      if (subs.archive.ready())
+        NProgress.done();
+    }
     if (currentView === 'edit' || currentView === 'view')
-      Meteor.subscribe('wine', Session.get('_id'));
+      subs.wine = Meteor.subscribe('wine', Session.get('_id'));
   });
 });

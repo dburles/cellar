@@ -1,17 +1,8 @@
 Template.nav.helpers({
   totalWines: function() {
-    var total = 0;
-    Wines.find({
-      qty: {
-        $gt: 0
-      }
-    }).forEach(function(wine) {
-      var qty = parseInt(wine.qty);
-      if (qty !== 'NaN' && qty) {
-        total += qty;
-      }
-    });
-    return total;
+    return _.reduce(Wines.find({ qty: { $gt: 0 }})
+      .map(function(doc) { return doc.qty; }),
+        function(memo, num) { return memo + num; }, 0);
   },
   totalValue: function() {
     var total = 0;

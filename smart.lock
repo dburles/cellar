@@ -4,13 +4,11 @@
     "basePackages": {
       "accounting": {},
       "fastclick": {},
-      "auto-nprogress": {},
       "font-awesome": {},
       "factory": {
         "version": "0.2.2"
       },
-      "fake": {},
-      "collection-hooks": {}
+      "fake": {}
     },
     "packages": {
       "accounting": {
@@ -22,11 +20,6 @@
         "git": "https://github.com/percolatestudio/meteor-fastclick",
         "tag": "v0.6.7",
         "commit": "fcb3bfd34d9f6874e626b4e24e8f54107938db41"
-      },
-      "auto-nprogress": {
-        "git": "https://github.com/settinghead/meteor-auto-nprogress.git",
-        "tag": "v0.2.8",
-        "commit": "4c0ded2017177d2d62ad3b1950d08f7d57828daf"
       },
       "font-awesome": {
         "git": "https://github.com/nate-strauser/meteor-font-awesome.git",
@@ -42,16 +35,6 @@
         "git": "https://github.com/subhog/meteor-fake.git",
         "tag": "v0.3.4",
         "commit": "e5393ddad6fbee5638e5c430666693828b403abc"
-      },
-      "collection-hooks": {
-        "git": "https://github.com/matb33/meteor-collection-hooks.git",
-        "tag": "v0.7.2",
-        "commit": "261f61f07b371ae913463fba8964a9b93cab531b"
-      },
-      "nprogress": {
-        "git": "https://github.com/zhouzhuojie/meteor-nprogress.git",
-        "tag": "v0.0.5",
-        "commit": "bb88a057166e0f1386ab8bc0a1e080b48aa59159"
       }
     }
   }
