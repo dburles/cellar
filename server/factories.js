@@ -1,8 +1,12 @@
-Factories.user = new Factory(Meteor.users, {
-  emails: [{
-    address: Fake.word().toLowerCase() + '@' + Fake.word().toLowerCase() + '.com',
-    verified: false
-  }],
+Factory.define('user', Meteor.users, {
+  emails: function() {
+    return [
+      {
+        address: Fake.word().toLowerCase() + '@' + Fake.word().toLowerCase() + '.com',
+        verified: false
+      }
+    ];
+  },
   services: {
     password: {
       srp: SRP.generateVerifier('test')
@@ -10,12 +14,12 @@ Factories.user = new Factory(Meteor.users, {
   }
 });
 
-Factories.wine = new Factory(Wines, {
-  owner: function() { return Factories.user.create(); },
+Factory.define('wine', Wines, {
+  owner: Factory.get('user'),
   added: function() { return Date.now(); },
   modified: function() { return Date.now(); },
   ref: function() {
-    // XXX should be in after insert hook
+    // XXX should be in after insert hook?
     var last = Wines.findOne({
       owner: this.owner
     }, {
@@ -28,13 +32,13 @@ Factories.wine = new Factory(Wines, {
   },
   region: function() {
     var regions = Regions.find().fetch();
-    return regions[_.random(0, regions.length - 1)].name;
+    return Random.choice(regions).name;
   },
   name: function() { return Fake.word(); },
   year: function() { return _.random(2000, 2014); },
   type: function() {
     var varieties = Varieties.find().fetch();
-    return varieties[_.random(0, varieties.length - 1)].name;
+    return Random.choice(varieties).name;
   },
   'drink_by': function() { return _.random(2014, 2030); },
   // purchased: function() { return _.random(2000, 2014); },
@@ -43,7 +47,7 @@ Factories.wine = new Factory(Wines, {
   notes: function() { return Fake.paragraph(5); },
   winery: function() {
     var wineries = Wineries.find().fetch();
-    return wineries[_.random(0, wineries.length - 1)].name;
+    return Random.choice(wineries).name;
   },
   qty: function() { return _.random(0, 13); }
 });

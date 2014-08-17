@@ -5,9 +5,7 @@
       "accounting": {},
       "fastclick": {},
       "font-awesome": {},
-      "factory": {
-        "version": "0.2.2"
-      },
+      "factory": {},
       "fake": {},
       "iron-router": {}
     },
@@ -29,8 +27,8 @@
       },
       "factory": {
         "git": "https://github.com/percolatestudio/meteor-factory.git",
-        "tag": "v0.2.2",
-        "commit": "3da490ce34255c33a6634a5d96af223317621ff2"
+        "tag": "v0.3.7",
+        "commit": "7edce6b81e656603348133c2bcced150f8626ead"
       },
       "fake": {
         "git": "https://github.com/subhog/meteor-fake.git",

@@ -3,9 +3,7 @@
     "accounting": {},
     "fastclick": {},
     "font-awesome": {},
-    "factory": {
-      "version": "0.2.2"
-    },
+    "factory": {},
     "fake": {},
     "iron-router": {}
   }
