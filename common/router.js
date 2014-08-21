@@ -13,14 +13,18 @@ Router.onBeforeAction(function(pause) {
     return pause();
   }
 
-  this.subscribe('allWines').wait();
-  
+  this.subscribe('wines').wait();
+
+}, { except: ['auth']});
+
+Router.onBeforeAction(function() {
+  console.log('ready: ' + this.ready());
   if (! this.ready())
     NProgress.start();
   
   if (this.ready())
     NProgress.done();
-}, { except: ['auth'] });
+}, { except: ['auth']});
 
 Router.map(function() {
   this.route('main', { path: '/' });
@@ -49,6 +53,9 @@ MainController = RouteController.extend({
 });
 
 ViewController = RouteController.extend({
+  waitOn: function() {
+    return Meteor.subscribe('wine', this.params._id);
+  },
   data: function() {
     return Wines.findOne(this.params._id);
   }
@@ -56,6 +63,9 @@ ViewController = RouteController.extend({
 
 ArchiveController = RouteController.extend({
   canSearch: true,
+  waitOn: function() {
+    return Meteor.subscribe('archive');
+  },
   data: function() {
     var wines;
 
@@ -71,6 +81,9 @@ ArchiveController = RouteController.extend({
 });
 
 EditController = RouteController.extend({
+  waitOn: function() {
+    return Meteor.subscribe('wine', this.params._id);
+  },
   data: function() {
     return Wines.findOne(this.params._id);
   }

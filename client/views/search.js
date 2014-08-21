@@ -27,9 +27,11 @@ Meteor.startup(function() {
   Deps.autorun(function() {
     if (Session.get('search')) {
       var searchResults;
-      if (View.current() === 'home')
+      var route = Router.current() && Router.current().route.name;
+
+      if (route === 'main')
         searchResults = Wines.search(Session.get('search')).count();
-      if (View.current() === 'archive')
+      if (route === 'archive')
         searchResults = Wines.search(Session.get('search'), { qty: 0 }).count();
 
       if (searchResults === 0)
