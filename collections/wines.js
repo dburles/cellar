@@ -1,4 +1,4 @@
-Wines = new Meteor.Collection('wines');
+Wines = new Mongo.Collection('wines');
 
 Wines.allow({
   insert: function(userId, doc) {

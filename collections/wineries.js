@@ -1,4 +1,4 @@
-Wineries = new Meteor.Collection('wineries');
+Wineries = new Mongo.Collection('wineries');
 
 Wineries.search = function(searchString) {
   if (_.isEmpty(searchString))

@@ -1,4 +1,4 @@
-Varieties = new Meteor.Collection('varieties');
+Varieties = new Mongo.Collection('varieties');
 
 Varieties.search = function(searchString) {
   if (_.isEmpty(searchString))

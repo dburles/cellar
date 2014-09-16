@@ -3,17 +3,17 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
+meteor-platform
 jquery
 accounts-base
 accounts-password
 underscore
-standard-app-packages
-accounting
-fastclick
 less
-factory
 srp
-fake
-nprogress
-iron-router
-font-awesome
+iron:router
+lepozepo:accounting
+anti:fake
+natestrauser:font-awesome
+dburles:factory
+mrt:nprogress
+

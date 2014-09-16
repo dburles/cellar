@@ -1,4 +1,4 @@
-Regions = new Meteor.Collection('regions');
+Regions = new Mongo.Collection('regions');
 
 Regions.search = function(searchString) {
   if (_.isEmpty(searchString))
