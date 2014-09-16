@@ -18,7 +18,6 @@ Router.onBeforeAction(function(pause) {
 }, { except: ['auth']});
 
 Router.onBeforeAction(function() {
-  console.log('ready: ' + this.ready());
   if (! this.ready())
     NProgress.start();
   
