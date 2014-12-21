@@ -22,10 +22,10 @@ Meteor.startup(function () {
   }
 
   if (Meteor.users.find().count() === 0) {
-    var user = Factories.user.create();
+    var user = Factory.create('user');
 
     _.times(40, function(n) {
-      Factories.wine.create({
+      Factory.create('wine',{
         owner: user._id
       });
     });
