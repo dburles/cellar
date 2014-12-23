@@ -26,7 +26,7 @@ Template.nav.helpers({
 Template.nav.events({
   'click .toggle-search': function(event) {
     event.preventDefault();
-    Session.set('toggleSearch', !Session.get('toggleSearch') ? true : false);
+    Session.set('toggleSearch', ! Session.get('toggleSearch'));
   },
   'click .sign-out': function() {
     Meteor.logout();
