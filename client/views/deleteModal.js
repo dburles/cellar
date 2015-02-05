@@ -2,7 +2,7 @@ Template.deleteModal.events({
   'click .delete': function(event) {
     event.preventDefault();
     var wine = this;
-    // Wines.remove(wine._id);
+    Meteor.call('remove', wine._id);
 
     Session.set('deleteModal', false);
     $('.delete-modal').modal('hide');
