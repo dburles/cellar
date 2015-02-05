@@ -13,8 +13,8 @@ srp
 iron:router
 lepozepo:accounting
 anti:fake
-natestrauser:font-awesome
 mrt:nprogress
 fastclick
 dburles:factory
 
+fortawesome:fontawesome
