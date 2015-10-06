@@ -18,6 +18,14 @@ Meteor.publish('archive', function() {
   });
 });
 
+Meteor.publish('drinknow', function() {
+  return Wines.find({
+    qty: { $gt: 0 }, 
+    drink_by: { $lte: new Date().getFullYear() },
+    owner: this.userId
+  });
+});
+
 Meteor.publish('wine', function(_id) {
   check(_id, String);
   return Wines.find({
