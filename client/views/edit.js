@@ -1,16 +1,10 @@
-Template.view.onCreated = function() {
+Template.edit.onCreated(function() {
   this.autorun(() => {
     this.subscribe('wine', FlowRouter.getParam('_id'));
   });
-};
-
-Template.view.events({
-  'click .back': function() {
-    FlowRouter.goBack();
-  }
 });
 
-Template.view.helpers({
+Template.edit.helpers({
   wine() {
     return Wines.findOne(FlowRouter.getParam('_id'));
   }

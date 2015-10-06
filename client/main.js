@@ -1,2 +1,8 @@
 accounting.settings.currency.format = "%v";
-NProgress.settings.showSpinner = false;
+
+// always subscribe to the main list
+Tracker.autorun(function() {
+  if (Meteor.user()) {
+    Meteor.subscribe('wines');
+  }
+});

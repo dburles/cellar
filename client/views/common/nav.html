@@ -23,13 +23,8 @@
               <a href="{{pathFor 'archive'}}"><i class="fa fa-clock-o"></i> Archive</a>
             </li>
             <li>
-              <a href="{{pathFor 'drinknow'}}"><i class="fa fa-clock-o"></i> Drink Now</a>
+              <a href="{{pathFor 'drinkNow'}}"><i class="fa fa-clock-o"></i> Drink Now</a>
             </li>
-            {{#if canSearch}}
-              <li>
-                <a href="" class="toggle-search"><i class="fa fa-search"></i> Search</a>
-              </li>
-            {{/if}}
           </ul>
         {{/if}}
         <ul class="nav navbar-nav navbar-right">
@@ -41,11 +36,7 @@
               <a>{{totalWines}}</a>
             </li>
             <li>
-              <a href="" class="sign-out"><i class="fa fa-sign-out"></i> Sign Out</a>
-            </li>
-          {{else}}
-            <li>
-              <a href="{{pathFor 'auth'}}"><i class="fa fa-sign-in"></i> Sign In / Up</a>
+              <a href="" class="js-sign-out"><i class="fa fa-sign-out"></i> Sign Out</a>
             </li>
           {{/if}}
         </ul>

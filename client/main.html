@@ -19,7 +19,11 @@
   {{> nav}}
   
   <div class="container">
-    {{> yield}}
+    {{#if currentUser}}
+      {{> Template.dynamic template=main}}
+    {{else}}
+      {{> auth}}
+    {{/if}}
   </div>
 
   {{> deleteModal}}

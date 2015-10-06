@@ -1,15 +1,16 @@
-Template.form.created = function() {
+Template.form.onCreated(function() {
   Session.set('region', '');
   Session.set('winery', '');
   Session.set('type', '');
-  return window.scrollTo(0, 0);
-};
 
-Deps.autorun(function() {
-  Meteor.subscribe('wineries', Session.get('winery'));
-  Meteor.subscribe('regions', Session.get('region'));
-  Meteor.subscribe('varieties', Session.get('type'));
+  this.autorun(() => {
+    this.subscribe('wineries', Session.get('winery'));
+    this.subscribe('regions', Session.get('region'));
+    this.subscribe('varieties', Session.get('type'));
+  });
 });
+
+// window.scrollTo(0, 0);
 
 Template.form.helpers({
   selectOptionsQty: function() {
@@ -89,11 +90,11 @@ Template.form.events({
 
     if (self._id) {
       Meteor.call('update', this._id, data, function() {
-        Router.go('view', self);
+        FlowRouter.go('view', { _id: self._id });
       });
     } else {
       Meteor.call('create', data, function(error, response) {
-        Router.go('view', { _id: response });
+        FlowRouter.go('view', { _id: response });
       });
     }
 
@@ -106,6 +107,6 @@ Template.form.events({
   },
   'click .cancel': function(event, template) {
     event.preventDefault();
-    Router.go('view', this);
+    FlowRouter.go('view', { _id: this._id });
   }
 });

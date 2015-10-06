@@ -9,10 +9,8 @@ accounts-password
 underscore
 less
 srp
-iron:router
 lepozepo:accounting
 anti:fake
-mrt:nprogress
 fastclick
 dburles:factory
 
@@ -30,3 +28,8 @@ random
 ejson
 spacebars
 check
+kadira:flow-router
+kadira:blaze-layout
+dburles:flow-router-map
+ecmascript
+arillo:flow-router-helpers

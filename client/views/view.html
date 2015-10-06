@@ -1,26 +1,26 @@
 <template name="view">
   <div class="jumbotron">
-    <h3><span class="label label-info pull-right">#{{ref}}</span></h3>
-    <h1>{{year}} {{winery}} {{type}}</h1>
+    <h3><span class="label label-info pull-right">#{{wine.ref}}</span></h3>
+    <h1>{{wine.year}} {{wine.winery}} {{wine.type}}</h1>
     
-    <h2>{{region}}</h2>
-    <p>{{notes}}</p>
-    {{#if drink_by}}
+    <h2>{{wine.region}}</h2>
+    <p>{{wine.notes}}</p>
+    {{#if wine.drink_by}}
       <hr>
-      <p>Drink by {{drink_by}}</p>
+      <p>Drink by {{wine.drink_by}}</p>
     {{/if}}
     
-    <span class="label label-default">&times; {{qty}}</span>
-    {{#if price}}
+    <span class="label label-default">&times; {{wine.qty}}</span>
+    {{#if wine.price}}
       <span class="label label-default">${{price}}</span>
     {{/if}}
-    {{#if rating}}
-      <span class="label label-default">{{rating}}/10</span>
+    {{#if wine.rating}}
+      <span class="label label-default">{{wine.rating}}/10</span>
     {{/if}}
     
     <div class="pull-right">
       <a href="" class="btn btn-default back">Back</a>
-      <a href="{{pathFor 'edit'}}" class="btn btn-info">Edit</a>
+      <a href="{{pathFor 'edit' _id=wine._id}}" class="btn btn-info">Edit</a>
     </div>
   </div>
 </template>
